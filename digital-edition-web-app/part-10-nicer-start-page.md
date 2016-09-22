@@ -81,11 +81,11 @@ The new **pages/index.html** should look like this.
 
 In case you are interested in the exact meaning and usage of these elements please refere to [Bootstrap's website](http://v4-alpha.getbootstrap.com/components/carousel/) or go through the [w3schools.com bootstrap tutorial](http://www.w3schools.com/bootstrap/bootstrap_carousel.asp). Anyhow, our modification of the **pages/index.html** shows some results. Although one could debate if this kind of change so far could seriously be considered as improvement.
 
-![image alt text](https://github.com/csae8092/posts/blob/master/digital-edition-web-app/images/part-10/image_0.jpg)
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-10/image_0.jpg)
 
 As unpleasant the current result is, as predictable it was since the `<img>` elements reference images which do not (yet) exist under the used paths ($app-root/resources/img/ACDH_Panorama_Postkarte_motiv02.jpg). But this is fixed quickly by first creating a `img` directory in `resources` and then uploading images into `/resources/img/`. For this tutorial I will use two images created by [Sandra Lehecka](http://www.oeaw.ac.at/acdh/en/lehecka) but of course feel free to use your own material. Just make sure that the file names of the images match those referenced in the `img` element by the `src` attribute.
 
-![image alt text](https://github.com/csae8092/posts/blob/master/digital-edition-web-app/images/part-10/image_1.jpg)
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-10/image_1.jpg)
 
 If you want you can add some descriptions/credits/headlines to those images in the so far empty `<div class="carousel-caption"/>`. In case you want give credits to some images found on wikipedia you could add something like this
 
@@ -103,7 +103,7 @@ If you want you can add some descriptions/credits/headlines to those images in t
 ```
 The result looks as depicted below
 
-![image alt text](https://github.com/csae8092/posts/blob/master/digital-edition-web-app/images/part-10/image_2.jpg)
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-10/image_2.jpg)
 
 As you can see the readability/visibility of such texts highly depends on the images you are using. So it may need some fiddling and playing with all kind of CSS settings to achieve good results. For our thun-demo app I will remove the content of `<div calss="carousel-caption">`. Especially as I already credited Laura by the usage of a `title="by Sandra Lehecka"` attribute in the `<img>` element.
 
@@ -166,7 +166,7 @@ So let's try to call this variable from **pages/index.html** by adding the `<h1>
 
 This renders a page looking like depicted below:
 
-![image alt text](https://github.com/csae8092/posts/blob/master/digital-edition-web-app/images/part-10/image_3.jpg)
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-10/image_3.jpg)
 
 Unfortunately there is no already declared variable for the application's description. But we can take **config:app-title** as an example an write some **config:app-description** in **modules/config.xqm**:
 
@@ -210,7 +210,7 @@ As we filled out the description form in a very minimalistic way, the current de
 
 Our start page **pages/index.html** should now provide this information:
 
-![image alt text](https://github.com/csae8092/posts/blob/master/digital-edition-web-app/images/part-10/image_4.jpg)
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-10/image_4.jpg)
 
 Since one can't use any (HTML)tags in the `<description>` element of **repo.xml** one would have to remove the `<p style="text-align:center" data-template="config:app-description"/>` element from **pages/index.html** and write some more elaborate description directly into the **pages/index.html**.
 
@@ -234,7 +234,7 @@ To improve the application's usability and spare our users from at least one cli
 ...
 ```
 
-![image alt text](https://github.com/csae8092/posts/blob/master/digital-edition-web-app/images/part-10/image_5.jpg)
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-10/image_5.jpg)
 
 ## ...a footer, ...
 
@@ -357,7 +357,7 @@ footer .poweredby img { width: 120px; }
 
 Now our humble application looks as follows:
 
-![image alt text](https://github.com/csae8092/posts/blob/master/digital-edition-web-app/images/part-10/image_6.jpg)
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-10/image_6.jpg)
 
 ## ... and a search field.
 
@@ -401,7 +401,7 @@ While we are already working on improving the application's usability we can imp
 
 This will render as a search field in the top right corner as depicted in the following screenshot:
 
-![image alt text](https://github.com/csae8092/posts/blob/master/digital-edition-web-app/images/part-10/image_7.jpg)
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-10/image_7.jpg)
 
 Having a general search field, we basically don't need to link to ft_search.html any more in the nav bar since we would then provide to our users two ways to achieve the same things and this is something I personally always find a bit annoying. Therefore I will remove the link to this page from the nav bar. Alternatively we could think about implementing something like an **advanced search** where users can customize e.g. in which parts or elements of the XML/TEI documents they want to search for. But since such a feature very much depends on the actual data, it is not an easy thing to include such a feature in a web applications like ours which tries to be as generic as possible. 
 
