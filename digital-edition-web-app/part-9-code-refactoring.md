@@ -58,9 +58,9 @@ Now we have everything we need to create dynamically the correct links leading f
 
 Finally we can browse to [http://localhost:8080/exist/apps/thun-demo/pages/ft_search.html](http://localhost:8080/exist/apps/thun-demo/pages/ft_search.html) search for e.g. "leben" (living), 
 
-![image alt text](../jpg)
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-9/image_0.jpg)
 
-and clicking on "Leben" to get to the actual document.  ![image alt text](../jpg)
+and clicking on "Leben" to get to the actual document.  ![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-9/image_1.jpg)
 
 # All or nothing
 

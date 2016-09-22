@@ -78,7 +78,7 @@ Since we took a lot of effort to remove all hard coded links from our applicatio
 
 After saving our changes we can browse now to the [application's start page](http://localhost:8080/exist/apps/thun-demo/pages/index.html) and we see first traces of our work as depicted below.
 
-![image alt text](/images/part-6/image_2.jpg)
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-6/image_2.jpg)
 
 But whereas the red circles show some progress, the circles colored differently show some artifacts of the application's previous name. But those will disappear the following step.
 First we can download the application by clicking on **Application/Download** button in [eXide’s navigation menu](http://localhost:8080/exist/apps/eXide/index.html) (make sure you opened any file from the application). 
@@ -89,11 +89,11 @@ And second we can install this packages and see if everything works as it should
 
 Looks good:
 
-![image alt text](/images/part-6/image_0.jpg)
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-6/image_0.jpg)
 
 Well not completely, since we are using still the XML/TEI documents from Thun-Demo as we can see in our table of content. 
 
-![image alt text](/images/part-6/image_1.jpg)
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-6/image_1.jpg)
 
 But this is easy to fix. Just replace the documents stored in `data/editions/` and you are done.
 

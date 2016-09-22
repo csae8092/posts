@@ -26,7 +26,7 @@ To create and configure a full text index for our XML/TEI documents stored in **
 
 Doing so in eXide looks like on the screenshot below:
 
-![image alt text](/images/part-8/image_0.jpg)
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-8/image_0.jpg)
 
 The content of this new created collection.xconf documents only contains a few lines:
 
@@ -47,11 +47,11 @@ Important to know is, that we have now indexed the text of all TEI `<p>` element
 
 ## Trigger indexing
 
-After we stored this document in the right place, we have to tell eXist-db to start the indexing routine. To do so, open the Collections tab from the [dashboard](http://localhost:8080/exist/apps/dashboard/index.html) browse to the collection you configured an index for (db/apps/thun-demo/data/editions/) and click on the ‘Reindex collection’ icon. Depending on the size and the amount of documents stored in this collection, this may take a while.![image alt text](/images/part-8/image_1.jpg) 
+After we stored this document in the right place, we have to tell eXist-db to start the indexing routine. To do so, open the Collections tab from the [dashboard](http://localhost:8080/exist/apps/dashboard/index.html) browse to the collection you configured an index for (db/apps/thun-demo/data/editions/) and click on the ‘Reindex collection’ icon. Depending on the size and the amount of documents stored in this collection, this may take a while.![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-8/image_1.jpg) 
 
 To check if everything worked and eXist-db really created an index on the documents stored in **db/apps/thun-demo/data/editions/** click on the the [dashboard](http://localhost:8080/exist/apps/dashboard/index.html) on the ‘Monitoring and Profiling for eXist’ (monex) or browse to  [http://localhost:8080/exist/apps/monex/index.html](http://localhost:8080/exist/apps/monex/index.html). (It might be, that this eXist-db package is not installed by default. If so, then you have to install it via the ‘Package Manger’.) After you opened monex, click on ‘Indexes’ (or browse to[http://localhost:8080/exist/apps/monex/indexes.html](http://localhost:8080/exist/apps/monex/indexes.html)) where you should see a list of all indexed collections, where you should see an entry ‘/db/apps/thun-demo/data/editions’
 
-![image alt text](/images/part-8/image_2.jpg)
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-8/image_2.jpg)
 
  You can now follow this link to inspect your index in detail. 
 
@@ -148,13 +148,13 @@ import module namespace kwic = "http://exist-db.org/xquery/kwic" at "resource:or
 
 Finally we should now be able to browse to [ft_search.html](http://localhost:8080/exist/apps/thun-demo/pages/ft_search.html) and see the following screen:
 
-![image alt text](/images/part-8/image_3.jpg)
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-8/image_3.jpg)
 
 No go ahead and search something for example: "kirche" (german for church, don’t know, why this word came to my mind).
 
  [http://localhost:8080/exist/apps/thun-demo/pages/ft_search.html?searchexpr=kirche](http://localhost:8080/exist/apps/thun-demo/pages/ft_search.html?searchexpr=kirche) 
 
-![image alt text](/images/part-8/image_4.jpg)
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-8/image_4.jpg)
 
 # Conclusion and outlook
 
