@@ -1,15 +1,7 @@
----
-layout:     post
-title:      # Part 7 - Index based Search
-date:       2016-08-16 11:21:29
-summary:    In the seventh part we will attack the issue of an index based search.
-categories: digital-edition
----
-
 # Introduction and requirements
 
-Even those humanities scholars who are usually rather skeptic about digital humanities and digital editions estimate well designed search functionalities like a fulltext search (we will address this topic in the [next tutorial]({{ site.baseurl }}{% post_url 2016-08-17-part-8-full-text-search %})) or of course an index based search. Whereas a fulltext search is something new in comparison to traditional (printed) editions an index of persons, places, terms of interest, and other things is one of the most genuine parts of a printed scholarly edition. Therefore a well planned transformation of this core asset from the printed to the digital domain will most likely help to make digital editions a sincerely respected alternative to printed ones. 
-As usually you can download the [latest code base]({{ site.baseurl }}/downloads/part-6/thun-demo-0.1.xar) from the [previous tutorial]({{ site.baseurl }}{% post_url 2016-08-15-part-6-rename-the-app %})).
+Even those humanities scholars who are usually rather skeptic about digital humanities and digital editions estimate well designed search functionalities like a fulltext search (we will address this topic in the [next tutorial](//..part-8-full-text-search)) or of course an index based search. Whereas a fulltext search is something new in comparison to traditional (printed) editions an index of persons, places, terms of interest, and other things is one of the most genuine parts of a printed scholarly edition. Therefore a well planned transformation of this core asset from the printed to the digital domain will most likely help to make digital editions a sincerely respected alternative to printed ones. 
+As usually you can download the [latest code base](/downloads/part-6/thun-demo-0.1.xar) from the [previous tutorial](../part-6-rename-the-app)).
 
 ## Markup
 
@@ -103,9 +95,9 @@ So if you have to decided on how to structure your index documents I very much r
 
 ## Indices collection
 
-Getting back to our concrete Thun-Demo application, we now have to think about a place or collection where to store the index documents in the database. Since the index files are closely related to the XML/TEI documents of the edited texts, it makes sense to keep them close to each other. Therefore let’s create in `/data` a new collection called `/data/indices/` and here we store our person index, which will name **listperson.xml.** You can download such a document [here](({{ site.baseurl }}/downloads/part-7/listperson.xml)
+Getting back to our concrete Thun-Demo application, we now have to think about a place or collection where to store the index documents in the database. Since the index files are closely related to the XML/TEI documents of the edited texts, it makes sense to keep them close to each other. Therefore let’s create in `/data` a new collection called `/data/indices/` and here we store our person index, which will name **listperson.xml.** You can download such a document [here]((/downloads/part-7/listperson.xml)
 
-![image alt text]({{ site.baseurl }}/images/part-7/image_0.jpg)
+![image alt text](/images/part-7/image_0.jpg)
 
 ## HTML and xQuery
 
@@ -155,7 +147,7 @@ What is left to do now, is to add a link to **/pages/persons.html** into the app
 
 Now we can browse to the person’s index of our digital edition.
 
-![image alt text]({{ site.baseurl }}/images/part-7/image_1.jpg)
+![image alt text](/images/part-7/image_1.jpg)
 
 # Link index with documents
 
@@ -189,11 +181,11 @@ declare function app:listPers($node as node(), $model as map(*)) {
 
 Now the names listed in persons.html are nice links:
 
-![image alt text]({{ site.baseurl }}/images/part-7/image_2.jpg)
+![image alt text](/images/part-7/image_2.jpg)
 
 But since we did not yet create a function called **app:listPers_hits** yet, we will receive the following error message when we try to follow one of those links. But the important thing is, that the we landed on the right page (hits.html) and that the value of the xml:id of the person’s name we clicked on shows up as in the ‘searchkey’ URL parameter. 
 
-![image alt text]({{ site.baseurl }}/images/part-7/image_3.jpg)
+![image alt text](/images/part-7/image_3.jpg)
 
 ## app:listPers_hits
 
@@ -244,7 +236,7 @@ declare function app:listPers_hits($node as node(), $model as map(*), $searchkey
 
 No we have perfectly working links:
 
-![image alt text]({{ site.baseurl }}/images/part-7/image_5.jpg)
+![image alt text](/images/part-7/image_5.jpg)
 
 But be aware that using the same or very similar lines of code in several different places is a good indicator for bad code and usually an excellent starting point for refactoring the code. We will take care about this in one of the following tutorials.
 
@@ -252,5 +244,5 @@ But be aware that using the same or very similar lines of code in several differ
 
 In this part of the tutorial we added an index of persons to our digital editions app which allows users to quickly identify and view all documents in the edition where the persons of their interests have been mentioned. For other indices (likes places or terms or bibliographic references) we can more or less re use the same logic and functionalities, either by copy and pasting most parts of the code or by improving the already existing functionality. We will come back to this question in one of the following tutorials. 
 
-But in the [next one]({{ site.baseurl }}{% post_url 2016-08-17-part-8-full-text-search %}), we will create a nice full text search which will allow searching all documents of our digital edition at once.
+But in the [next one](//..part-8-full-text-search), we will create a nice full text search which will allow searching all documents of our digital edition at once.
 

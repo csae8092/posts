@@ -1,17 +1,8 @@
----
-layout:     post
-title:      # Part 6 - Rename the app
-date:       2016-08-15 11:21:29
-summary:    In this sixth part of this series of tutorials we will rename, pack and (re)deploy our current digital edition’s application.
-categories: digital-edition
----
-
 # Introduction and requirements
-
 
 In this sixth part of this series of tutorials we will rename, pack and (re)deploy our current digital edition’s application. If you have no intentions at all to ever create another digital editions application than the current one (which is called thun-demo), then you can go on and skip this part. If not, you will learn, which parts of which files you will have to modify to rename the package, the applications title and the visible URLs. 
 
-This tutorial will use the code [build so far]({{ site.baseurl }}{% post_url 2016-08-14-part-5-clean-up-the-code %}) and which you can download [here]({{ site.baseurl }}/downloads/part-5/thun-demo-0.1.xar).
+This tutorial will use the code [build so far](../part-5-clean-up-the-code) and which you can download [here](/downloads/part-5/thun-demo-0.1.xar).
 
 # expath-pkg.xml
 
@@ -87,7 +78,7 @@ Since we took a lot of effort to remove all hard coded links from our applicatio
 
 After saving our changes we can browse now to the [application's start page](http://localhost:8080/exist/apps/thun-demo/pages/index.html) and we see first traces of our work as depicted below.
 
-![image alt text]({{ site.baseurl }}/images/part-6/image_2.jpg)
+![image alt text](/images/part-6/image_2.jpg)
 
 But whereas the red circles show some progress, the circles colored differently show some artifacts of the application's previous name. But those will disappear the following step.
 First we can download the application by clicking on **Application/Download** button in [eXide’s navigation menu](http://localhost:8080/exist/apps/eXide/index.html) (make sure you opened any file from the application). 
@@ -98,11 +89,11 @@ And second we can install this packages and see if everything works as it should
 
 Looks good:
 
-![image alt text]({{ site.baseurl }}/images/part-6/image_0.jpg)
+![image alt text](/images/part-6/image_0.jpg)
 
 Well not completely, since we are using still the XML/TEI documents from Thun-Demo as we can see in our table of content. 
 
-![image alt text]({{ site.baseurl }}/images/part-6/image_1.jpg)
+![image alt text](/images/part-6/image_1.jpg)
 
 But this is easy to fix. Just replace the documents stored in `data/editions/` and you are done.
 
@@ -116,15 +107,15 @@ Congrats! You are now in the possession of a lightweight eXist-db package contai
 
 Of course the current application is very barebone. But in the upcoming tutorials we will add more and more features to it. While doing so, we will constantly reflect our actions to make sure, that our code will stay as reusable as reasonable and possible. 
 
-In the [next tutorial]({{ site.baseurl }}{% post_url 2016-08-16-part-7-index-based-search %}) we will tackle the topic of index or register based search functionalities.
+In the [next tutorial](../part-7-index-based-search %}) we will tackle the topic of index or register based search functionalities.
 
 # Disclaimer
 
-Actually there are still traces of our thun-demo app in the code of the renamed rita-demo application (which can be downloaded as package [here]({{ site.baseurl }}/downloads/part-6/rita-demo-0.1.xar)). When you look for example into the code of `modules/app.xql` you will see that for example the **config module** is related to the namespace "http://www.digital-archiv.at/ns/**thun-demo**/config". There are basically two ways to fix this.
+Actually there are still traces of our thun-demo app in the code of the renamed rita-demo application (which can be downloaded as package [here](/downloads/part-6/rita-demo-0.1.xar)). When you look for example into the code of `modules/app.xql` you will see that for example the **config module** is related to the namespace "http://www.digital-archiv.at/ns/**thun-demo**/config". There are basically two ways to fix this.
 
 * We could modify the build process of the package, providing some variables and some build templates. But this is quite a lot of work and also quite error prone. 
 * Alternatively we can replace the namespace by hand or even better by the use of a search & replace command. 
 
-You can download the rita-demo package with updated namespaces [here]({{ site.baseurl }}/downloads/part-6/rita-demo-0.1_new_ns.xar)
+You can download the rita-demo package with updated namespaces [here](/downloads/part-6/rita-demo-0.1_new_ns.xar)
 
 

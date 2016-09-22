@@ -1,14 +1,6 @@
----
-layout:     post
-title:      # Part 8 - Full text search
-date:       2016-08-16 11:21:29
-summary:    In the eighth part we are going to build a full text search.
-categories: digital-edition
----
-
 # Introduction and requirements
 
-In the [last part]({{ site.baseurl }}{% post_url 2016-08-16-part-7-index-based-search %}) of this series of tutorials we implemented a basic index based search functionality. The code we build so far can be downloaded [here]({{ site.baseurl }}/downloads/part-7/thun-demo-0.1.xar). In this part now, we are going to build a full text search which will allow users to 
+In the [last part](../part-7-index-based-search) of this series of tutorials we implemented a basic index based search functionality. The code we build so far can be downloaded [here](/downloads/part-7/thun-demo-0.1.xar). In this part now, we are going to build a full text search which will allow users to 
 
 1. search the content (the text) of all of our XML/TEI documents, 
 
@@ -34,7 +26,7 @@ To create and configure a full text index for our XML/TEI documents stored in **
 
 Doing so in eXide looks like on the screenshot below:
 
-![image alt text]({{ site.baseurl }}/images/part-8/image_0.jpg)
+![image alt text](/images/part-8/image_0.jpg)
 
 The content of this new created collection.xconf documents only contains a few lines:
 
@@ -55,11 +47,11 @@ Important to know is, that we have now indexed the text of all TEI `<p>` element
 
 ## Trigger indexing
 
-After we stored this document in the right place, we have to tell eXist-db to start the indexing routine. To do so, open the Collections tab from the [dashboard](http://localhost:8080/exist/apps/dashboard/index.html) browse to the collection you configured an index for (db/apps/thun-demo/data/editions/) and click on the ‘Reindex collection’ icon. Depending on the size and the amount of documents stored in this collection, this may take a while.![image alt text]({{ site.baseurl }}/images/part-8/image_1.jpg) 
+After we stored this document in the right place, we have to tell eXist-db to start the indexing routine. To do so, open the Collections tab from the [dashboard](http://localhost:8080/exist/apps/dashboard/index.html) browse to the collection you configured an index for (db/apps/thun-demo/data/editions/) and click on the ‘Reindex collection’ icon. Depending on the size and the amount of documents stored in this collection, this may take a while.![image alt text](/images/part-8/image_1.jpg) 
 
 To check if everything worked and eXist-db really created an index on the documents stored in **db/apps/thun-demo/data/editions/** click on the the [dashboard](http://localhost:8080/exist/apps/dashboard/index.html) on the ‘Monitoring and Profiling for eXist’ (monex) or browse to  [http://localhost:8080/exist/apps/monex/index.html](http://localhost:8080/exist/apps/monex/index.html). (It might be, that this eXist-db package is not installed by default. If so, then you have to install it via the ‘Package Manger’.) After you opened monex, click on ‘Indexes’ (or browse to[http://localhost:8080/exist/apps/monex/indexes.html](http://localhost:8080/exist/apps/monex/indexes.html)) where you should see a list of all indexed collections, where you should see an entry ‘/db/apps/thun-demo/data/editions’
 
-![image alt text]({{ site.baseurl }}/images/part-8/image_2.jpg)
+![image alt text](/images/part-8/image_2.jpg)
 
  You can now follow this link to inspect your index in detail. 
 
@@ -156,17 +148,17 @@ import module namespace kwic = "http://exist-db.org/xquery/kwic" at "resource:or
 
 Finally we should now be able to browse to [ft_search.html](http://localhost:8080/exist/apps/thun-demo/pages/ft_search.html) and see the following screen:
 
-![image alt text]({{ site.baseurl }}/images/part-8/image_3.jpg)
+![image alt text](/images/part-8/image_3.jpg)
 
 No go ahead and search something for example: "kirche" (german for church, don’t know, why this word came to my mind).
 
  [http://localhost:8080/exist/apps/thun-demo/pages/ft_search.html?searchexpr=kirche](http://localhost:8080/exist/apps/thun-demo/pages/ft_search.html?searchexpr=kirche) 
 
-![image alt text]({{ site.baseurl }}/images/part-8/image_4.jpg)
+![image alt text](/images/part-8/image_4.jpg)
 
 # Conclusion and outlook
 
 As you can see, the Keyword in its context is rendered as a link. But clicking on it produces (for now) only a 404 (page not found) error. 
 
-To fix this, we could (once more) copy and paste parts of the code used for the index based search results view. But since this would be now the third time we copy paste very similar functionalities, we should do something more advanced like writing a reusable function. But this we will engage in the [next part]({{ site.baseurl }}{% post_url 2016-08-18-part-9-code-refactoring %}). 
+To fix this, we could (once more) copy and paste parts of the code used for the index based search results view. But since this would be now the third time we copy paste very similar functionalities, we should do something more advanced like writing a reusable function. But this we will engage in the [next part](../part-9-code-refactoring). 
 
