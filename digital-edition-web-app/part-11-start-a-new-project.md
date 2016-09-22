@@ -7,7 +7,7 @@ All we need is again an eXist-db instance, and the application package we [creat
 
 To start a fresh project, lets upload the (renamed) package via eXist-db's **Package Manager**. If everything worked you should see the according tile on the dashboard appear (maybe after you refreshed the browser). As you can see, I have now both, the 'old' and the renamed version of Thun-Demo running on my eXist-db instance.
 
-![image alt text](/images/part-11/image_0.jpg)
+![image alt text](https://github.com/csae8092/posts/blob/master/digital-edition-web-app/images/part-11/image_0.jpg)
 
 ## Remove Thun-Traces
 
@@ -17,11 +17,11 @@ Since the new project most likely won't deal with any materials related to Thun,
 
 Besides adjusting/renaming the metadata properties stored in **repo.xml** and **expath-pkg.xml** we should also search and replace for the 'old' application namespace. For this, oXygen provides a nice feature. In oXygen's data source explorer, browse to the application's root directory `db/apps/thun-demo-orig` click on it and open oXygen's context menu (right mouse click) and go to **Find/Replace in Files**. 
 
-![image alt text](/images/part-11/image_1.jpg)
+![image alt text](https://github.com/csae8092/posts/blob/master/digital-edition-web-app/images/part-11/image_1.jpg)
 
 This will open a **Find/Replace in Files** form which will do exactly this what the name suggests. In case of our current project, I will search for **http://www.digital-archiv.at/ns/thun-demo/** which is the namespace of our 'old' application and replace it through **http://www.digital-archiv.at/ns/glaser/** which will be the namespace of my new application. 
 
-![image alt text](/images/part-11/image_2.jpg)
+![image alt text](https://github.com/csae8092/posts/blob/master/digital-edition-web-app/images/part-11/image_2.jpg)
 
 Having renamed everything, removed old data files and replaced the application's namespace, we can continue working on our new project. ([Here]())
 
@@ -29,7 +29,7 @@ Having renamed everything, removed old data files and replaced the application's
 
 Either if you are developing an application or if you are e.g. working on (XML/TEI) documents it is usually a good thing save your files in some kind of version control system (e.g. GIT). This means that when you working with eXist-db you somehow need to get your data, your files, your application's code base OUT of eXist-db (or to be more precise of eXist-db's database) and on your local hard drive. eXide provides therefore a **Synchronize** function under **Application/Synchronize**. When you click on this, a new window opens where you have to fill in a **Target Directory** in which the documents of your application should be written. 
 
-![image alt text](/images/part-11/image_3.jpg)
+![image alt text](https://github.com/csae8092/posts/blob/master/digital-edition-web-app/images/part-11/image_3.jpg)
 
 When you try this out you will notice, that not all  documents from the root directory will be written to your hard drive. This becomes a problem if you want to build your application from your local drive because besides other files, the **build.xml** is missing. To fix this, you can crate a new document in the application's root directory and copy the following code into it. 
 **sync.xql**
