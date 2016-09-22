@@ -7,7 +7,7 @@ As promised in the [previous part]((../part-9-code-refactoring) of our tutorial 
 * present this data in a hopefully slightly more appealing manner than it is done now,
 * and we will add some footer which present some other useful informations and references.
 
-And as always, you can download the current code of the application [here](/downloads/part-9/thun-demo-0.1.xar).
+And as always, you can download the current code of the application [here](https://github.com/csae8092/posts/raw/master/digital-edition-web-app/downloads/part-9/thun-demo-0.1.xar).
 
 # Playing with [Bootstrap](http://getbootstrap.com/)
 
@@ -437,4 +437,4 @@ With this 10th tutorial we meet all requirements described in the [first part](.
 
 ## Get the app
 
-In case you were following this tutorials only theoretically and you didn't wrote any line of code, you can download the packed application [here](/downloads/part-10/thun-demo-0.1.xar).
+In case you were following this tutorials only theoretically and you didn't wrote any line of code, you can download the packed application [here](https://github.com/csae8092/posts/raw/master/digital-edition-web-app/downloads/part-10/thun-demo-0.1.xar).

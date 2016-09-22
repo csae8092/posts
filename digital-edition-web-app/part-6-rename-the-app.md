@@ -2,7 +2,7 @@
 
 In this sixth part of this series of tutorials we will rename, pack and (re)deploy our current digital edition’s application. If you have no intentions at all to ever create another digital editions application than the current one (which is called thun-demo), then you can go on and skip this part. If not, you will learn, which parts of which files you will have to modify to rename the package, the applications title and the visible URLs. 
 
-This tutorial will use the code [build so far](../part-5-clean-up-the-code) and which you can download [here](/downloads/part-5/thun-demo-0.1.xar).
+This tutorial will use the code [build so far](../part-5-clean-up-the-code) and which you can download [here](https://github.com/csae8092/posts/raw/master/digital-edition-web-app/downloads/part-5/thun-demo-0.1.xar).
 
 # expath-pkg.xml
 
@@ -111,11 +111,11 @@ In the [next tutorial](../part-7-index-based-search %}) we will tackle the topic
 
 # Disclaimer
 
-Actually there are still traces of our thun-demo app in the code of the renamed rita-demo application (which can be downloaded as package [here](/downloads/part-6/rita-demo-0.1.xar)). When you look for example into the code of `modules/app.xql` you will see that for example the **config module** is related to the namespace "http://www.digital-archiv.at/ns/**thun-demo**/config". There are basically two ways to fix this.
+Actually there are still traces of our thun-demo app in the code of the renamed rita-demo application (which can be downloaded as package [here](https://github.com/csae8092/posts/raw/master/digital-edition-web-app/downloads/part-6/rita-demo-0.1.xar)). When you look for example into the code of `modules/app.xql` you will see that for example the **config module** is related to the namespace "http://www.digital-archiv.at/ns/**thun-demo**/config". There are basically two ways to fix this.
 
 * We could modify the build process of the package, providing some variables and some build templates. But this is quite a lot of work and also quite error prone. 
 * Alternatively we can replace the namespace by hand or even better by the use of a search & replace command. 
 
-You can download the rita-demo package with updated namespaces [here](/downloads/part-6/rita-demo-0.1_new_ns.xar)
+You can download the rita-demo package with updated namespaces [here](https://github.com/csae8092/posts/raw/master/digital-edition-web-app/downloads/part-6/rita-demo-0.1_new_ns.xar)
 
 

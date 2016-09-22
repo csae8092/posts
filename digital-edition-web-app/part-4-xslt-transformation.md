@@ -1,7 +1,7 @@
 # Introduction and requirements
 
 
-The fourth part of this series of tutorials starts off where the [third part](part-3-table-of-content) ends. You can deploy the latest codebase by downloading and installing [this](/downloads/part-3/thun-demo-0.1.xar) package. For details instructions on how to do this, please consult the [previous tutorial](part-3-table-of-content). 
+The fourth part of this series of tutorials starts off where the [third part](../part-3-table-of-content) ends. You can deploy the latest codebase by downloading and installing [this](https://github.com/csae8092/posts/raw/master/digital-edition-web-app/downloads/part-3/thun-demo-0.1.xar) package. For details instructions on how to do this, please consult the [previous tutorial](../part-3-table-of-content). 
 
 In the last tutorial we created a very basic [table of content](http://localhost:8080/exist/apps/thun-demo/pages/toc.html) which lists the content of the application’s data directory. For this part of the tutorial, our requirements demand, that we will be able to click on any document of our interest listed in the table of content to retrieve a (very basic) HTML representation of the underlying XML/TEI document.
 
@@ -64,7 +64,7 @@ Now browse to [http://localhost:8080/exist/apps/thun-demo/pages/show.html](http:
 
 ![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-4/image_0.jpg)
 
-As already mentioned, writing XSLT stylesheets is not in the scope of this HowTos. But to have a slightly more attractive (HTML) representation of your XML/TEI (well, actually of the TEI files used for this tutorial), I will added a few more lines of code to **resources/xslt/xmlToHtml.xsl**. You can find the xslt-stylessheet I used for the screenshots [here](/downloads/part-4/xmlToHtml.xsl). Just download this file and replace our basic stylesheet stored in **resources/xslt** with it. 
+As already mentioned, writing XSLT stylesheets is not in the scope of this HowTos. But to have a slightly more attractive (HTML) representation of your XML/TEI (well, actually of the TEI files used for this tutorial), I will added a few more lines of code to **resources/xslt/xmlToHtml.xsl**. You can find the xslt-stylessheet I used for the screenshots [here](https://github.com/csae8092/posts/raw/master/digital-edition-web-app/downloads/part-4/xmlToHtml.xsl). Just download this file and replace our basic stylesheet stored in **resources/xslt** with it. 
 
 ![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-4/image_1.jpg)
 
@@ -160,4 +160,4 @@ Before we conclude this fourth part of the tutorial, let’s remove the link to 
 
 With this fourth part of our digital edition web app tutorial, we are now capable of triggering XSLT transformations with one mouse click from our digital edition app’s table of context. With some XSLT as well as some CSS, HTML (and maybe some JavaScript) skills you will be able to create quite fancy (HTML) representations of your XML/TEI documents. 
 
-Looking at the requirements of our application from Part I of this tutorial series, we see, that the only thing which is not realized yet is a fulltext search. But before we will engage this feature, we should spend some time and energy on refactoring the code (see [https://de.wikipedia.org/wiki/Refactoring](https://de.wikipedia.org/wiki/Refactoring)) as well on removing all the hard coded links we introduced in this chapter. Therefore in the [next part](part-5-clean-up-the-code) of this tutorial we will clean up the code and will transform our application into a state which will make it very easy to pack the code and deploy it to any other eXist-db instance, without having to worry that some functions won’t work any more. 
+Looking at the requirements of our application from Part I of this tutorial series, we see, that the only thing which is not realized yet is a fulltext search. But before we will engage this feature, we should spend some time and energy on refactoring the code (see [https://de.wikipedia.org/wiki/Refactoring](https://de.wikipedia.org/wiki/Refactoring)) as well on removing all the hard coded links we introduced in this chapter. Therefore in the [next part](../part-5-clean-up-the-code) of this tutorial we will clean up the code and will transform our application into a state which will make it very easy to pack the code and deploy it to any other eXist-db instance, without having to worry that some functions won’t work any more. 

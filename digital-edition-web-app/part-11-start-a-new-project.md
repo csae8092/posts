@@ -1,7 +1,7 @@
 # Introduction and requirements
 
 Ok, let's say we continued working on our code base and created a beautiful and highly user friendly digital edition custom tailored towards the mark up of our XML/TEI documents. And since this web app is so wonderful, other people are now constantly knocking on our door wanting something similar. The current part of this HowTos tries to sketch one *possible* workflow.
-All we need is again an eXist-db instance, and the application package we [created so far](/downloads/part-10/thun-demo-0.1.xar). In case you were following the previous tutorials and you have already a running instance of our thun-demo app installed, I would kindly ask you [to rename](../part-6-rename-the-app) this instance so you can safely install another version of thun-demo-0.1.xar. In my case I renamed it into "thun-demo-orig-0.1.xar". You can find the renamed version [here](/downloads/part-11/thun-demo-orig-0.1.xar).
+All we need is again an eXist-db instance, and the application package we [created so far](https://github.com/csae8092/posts/raw/master/digital-edition-web-app/downloads/part-10/thun-demo-0.1.xar). In case you were following the previous tutorials and you have already a running instance of our thun-demo app installed, I would kindly ask you [to rename](../part-6-rename-the-app) this instance so you can safely install another version of thun-demo-0.1.xar. In my case I renamed it into "thun-demo-orig-0.1.xar". You can find the renamed version [here](https://github.com/csae8092/posts/raw/master/digital-edition-web-app/downloads/part-11/thun-demo-orig-0.1.xar).
 
 # Install the package
 
@@ -63,4 +63,4 @@ try{
 Adapt then the value of the variable `$target-base-default` to your needs and run **Eval** (be sure you are logged in) and ideally all files (if you run the script the first time, otherwise only modified files) will be written into the `$target-base-default` directory.
 After you synced all documents to your local hard drive, you can open a comand line, browse into the directory which holds your application's code an run [ant](http://ant.apache.org/) to build your application. But be aware that you have to have ant installed for this. 
 
-[Here](/downloads/part-10/glaser-text-app-0.1.xar) is the code of the new app.
+[Here](https://github.com/csae8092/posts/raw/master/digital-edition-web-app/downloads/part-10/glaser-text-app-0.1.xar) is the code of the new app.

@@ -2,7 +2,7 @@
 
 In this third part of our series of HowTos we will upload the XML/TEI files in our database and write our first xQuery function which will generate a very basic table of content from the uploaded XML/TEI documents. To present this table of content to the users of our web app, we will also learn how to integrate xQuery functions in HTML code. (Yes, this lines were copy-pasted from Part II).
 
-Part III of this tutorial builds upon the work done in [Part II](part-2-getting-started). In case you lost your laptop in the train, deleted your eXist-db instance or just didn’t follow Part III you will need [the code created in Part II](/downloads/part-2/thun-demo-0.1.xar). 
+Part III of this tutorial builds upon the work done in [Part II](../part-2-getting-started). In case you lost your laptop in the train, deleted your eXist-db instance or just didn’t follow Part III you will need [the code created in Part II](https://github.com/csae8092/posts/raw/master/digital-edition-web-app/downloads/part-2/thun-demo-0.1.xar). 
 
 ## Download...
 
@@ -12,7 +12,7 @@ The probably most simplest way to distribute your application is to download it 
 
 This triggers a download of a file called *thun-demo.xar*. This is actually just a .zip file containing your application’s code. So you can rename it to *thun-demo.zip*, unzip it and inspect its content which should look striking similar to the directories and documents of your application stored in eXist-db. 
 
-Such a *thun-demo.xar* containing the code from at the end of Part II can be downloaded [here](/downloads/part-2/thun-demo-0.1.xar).
+Such a *thun-demo.xar* containing the code from at the end of Part II can be downloaded [here](https://github.com/csae8092/posts/raw/master/digital-edition-web-app/downloads/part-2/thun-demo-0.1.xar).
 
 ## … and (re)install your application.
 
@@ -169,5 +169,5 @@ Save the changes and browse to [http://localhost:8080/exist/apps/thun-demo/pages
 
 Congrats, you wrote your first xQuery script in this session of our tutorial and you played with it  in a quite interactive way using eXide. And you also wrote your first xQuery function and called it with the help from eXist-db templating system. Oh, and by the way, you have also just created a very basic digital edition application. An application which publishes XML/TEI in a machine readable and yes - also human readable manner. Even reading the XML/TEI model of the encoded text is usually not big fun for most of your users (from the humanities domain). 
 
-In the [4th part](part-4-xslt-transformation) of this little series of tutorials we will engage the detail view of our applications. This means, we will write another xQuery function, which will fetch an XML/TEI document and transform it with the help of an XSLT-script we are also going to write in the next session into a very basic HTML document. 
+In the [4th part](../part-4-xslt-transformation) of this little series of tutorials we will engage the detail view of our applications. This means, we will write another xQuery function, which will fetch an XML/TEI document and transform it with the help of an XSLT-script we are also going to write in the next session into a very basic HTML document. 
 
