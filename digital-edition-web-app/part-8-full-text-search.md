@@ -177,15 +177,15 @@ into
 
 Now we can use a jQuery statement `var hits = ($('td.KWIC').children('p').length);` to count all `<p>` elements which are children of `<td class="KWIC">` elements and store this number in a `hits` variable. 
 
-The next step is to display this value. Therefore we add a `<h1><span id="hitcount"></span> Hits</h1>` to our **pages/ft_search.html** document which will be populated when the page has finished loading with the help of the following little jQUery function: 
+The next step is to display this value. Therefore we add a `<h1><span id="hitcount"></span> Hits</h1>` to our **pages/ft_search.html** document which will be populated when the page has finished loading with the help of the following little jQuery function: 
 
 ```jquery
 <script>
 $( document ).ready(function() {
     var hits = ($('td.KWIC').children('p').length);
     $("#hitcount").text(hits);
-</script>
 });
+</script>
 ```
 
 When we now search for e.g. 'kirche', we will see the number of hits.
@@ -196,7 +196,7 @@ When we now search for e.g. 'kirche', we will see the number of hits.
 
 The perfectionists among you might worry about searches returning only one match because of the hard coded "Hit**s**". The easy way out would be to replace "Hits" with something like "Hit(s)". The nicer way of course is to change our code into something like this (and remove "Hits" from the `<h1>`element.)
 
-```jquery
+```javascript
 <script>
     $( document ).ready(function() {
         var hits = ($('td.KWIC').children('p').length);
