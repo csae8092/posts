@@ -63,4 +63,4 @@ try{
 Adapt then the value of the variable `$target-base-default` to your needs and run **Eval** (be sure you are logged in) and ideally all files (if you run the script the first time, otherwise only modified files) will be written into the `$target-base-default` directory.
 After you synced all documents to your local hard drive, you can open a comand line, browse into the directory which holds your application's code an run [ant](http://ant.apache.org/) to build your application. But be aware that you have to have ant installed for this. 
 
-[Here](https://github.com/csae8092/posts/raw/master/digital-edition-web-app/downloads/part-10/glaser-text-app-0.1.xar) is the code of the new app.
+[Here](https://github.com/csae8092/posts/raw/master/digital-edition-web-app/downloads/part-11/glaser-text-app-0.1.xar) is the code of the new app.
