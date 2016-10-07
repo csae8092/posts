@@ -156,6 +156,65 @@ No go ahead and search something for example: "kirche" (german for church, donâ€
 
 ![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-8/image_4.jpg)
 
+## Hit Count
+
+Usually a search result page like the one we are building here also presents a number of matches or hits returned by the search query. Basically there are two ways of fetching and presenting this information. One could calculate the number of hits on the back end with the help of xQuery and display this number to the user using eXist-db's template functions. I guess this is considered to be the right way.
+
+On the other hand our existing search function is already providing all information needed to display the number of hits to the user. Because currently it renders each hit in an HTML `<p/>` element, grouped by the document in which the search term was found (rendered as HTML `tr` elements.) So if you want to know how many hits the query returned with, just go on and count all paragraphs of the KWIC-column in the results table. Of course this is not exactly a user friendly solution. Especially if have the power of computers at disposal and everybody knows that computers are quite good in counting things.
+
+To avoid writing some code which says, please, count all `<p>` elements in each second `<td>` in each `<tr>` element in the first `<table>` we will add a class attribute to the `<td>` element containing the KWIC-result. 
+In **modules/app.xql** in the function **app:ft_search** please change this line:
+
+```xquery
+<td>{kwic:summarize($hit, <config width="40" link="{$document}" />)}</td>
+```
+
+into 
+
+```xquery
+<td class="KWIC">{kwic:summarize($hit, <config width="40" link="{$document}" />)}</td>
+```
+
+Now we can use a jQuery statement `var hits = ($('td.KWIC').children('p').length);` to count all `<p>` elements which are children of `<td class="KWIC">` elements and store this number in a `hits` variable. 
+
+The next step is to display this value. Therefore we add a `<h1><span id="hitcount"></span> Hits</h1>` to our **pages/ft_search.html** document which will be populated when the page has finished loading with the help of the following little jQUery function: 
+
+```jquery
+<script>
+$( document ).ready(function() {
+    var hits = ($('td.KWIC').children('p').length);
+    $("#hitcount").text(hits);
+</script>
+});
+```
+
+When we now search for e.g. 'kirche', we will see the number of hits.
+
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-8/image_5.jpg)
+
+### Hits and Hit
+
+The perfectionists among you might worry about searches returning only one match because of the hard coded "Hit**s**". The easy way out would be to replace "Hits" with something like "Hit(s)". The nicer way of course is to change our code into something like this (and remove "Hits" from the `<h1>`element.)
+
+```jquery
+<script>
+    $( document ).ready(function() {
+        var hits = ($('td.KWIC').children('p').length);
+        if (hits == 1){
+            $("#hitcount").text(hits+" Hit");
+        }
+        else {
+            $("#hitcount").text(hits+" Hits");
+        }
+    });     
+</script>
+```
+
+Searching now for e.g. 'Schrekensruf' returns "1 Hit":
+
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-8/image_6.jpg)
+
+
 # Conclusion and outlook
 
 As you can see, the Keyword in its context is rendered as a link. But clicking on it produces (for now) only a 404 (page not found) error. 
