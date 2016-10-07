@@ -209,7 +209,7 @@ The perfectionists among you might worry about searches returning only one match
 </script>
 ```
 
-Searching now for e.g. 'Schrekensruf' returns "1 Hit":
+Searching now for e.g. 'Schreckensruf' returns "1 Hit":
 
 ![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-8/image_6.jpg)
 
