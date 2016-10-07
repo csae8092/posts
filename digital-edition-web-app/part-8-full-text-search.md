@@ -213,10 +213,52 @@ Searching now for e.g. 'Schreckensruf' returns "1 Hit":
 
 ![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-8/image_6.jpg)
 
+## What did I search for
+
+The last thing (for now) we could do to improve the usability of ft_search.html is to display the actual search term. Like the hit count this could be done on the front end as well on the back end. Or, to use different words, on the client or on the server side. Again we will choose the front end. Which means that the users browser will have to do all the work and not the server which hosts the application. 
+The task we try to accomplish is quite similar to the task before. First we have to fetch the actual search term from somewhere, store it to a variable and then add the variables value to an element of our choice. So let's start with fetching the search term. Since we are using a GET-request to submit the search term to the server, the serarch term is exposed in the URL as value of the ?searchexpr=` parameter. The only thing we have to do is to write a function which can parse URL params. Since this is a quit common issue, a *google-first* approach spares us from thinking coming up with [this](https://www.sitepoint.com/url-parameters-jquery/) solution amongst others. Go on and include this function and adapt your existing code so it looks like the following snippet in **pages/ft_search.html**:
+
+```javascript
+<script>
+        $( document ).ready(function() {
+        
+            $.urlParam = function(name){
+                var results = new RegExp('[\?&amp;]' + name + '=([^&amp;]*)').exec(window.location.href);
+                if (results==null){
+                    return null;
+                }
+                else{
+                    return results[1] || 0;
+                }
+            }
+            
+            var hits = ($('td.KWIC').children('p').length);
+            if (hits == 1){
+                $("#hitcount").text(hits+" Hit ");
+            }
+            else {
+                $("#hitcount").text(hits+" Hits ");
+            }
+            $("#searchexpr").text(decodeURIComponent($.urlParam("searchexpr")));
+        });     
+</script>
+```
+
+As you can see we are we adding the value of the fetched URL param to an HTML element with the `id="searchexpr"`. Such an element could be a child element of the pages `<h1>` headline which we could modify into something shown below:
+
+```html
+<h1>
+    <span id="hitcount"/> for <strong><span id="searchexpr"/></strong>
+</h1>
+```
+
+When we now search for e.g. 'kirche' our result page should like this:
+
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-8/image_6.jpg)
 
 # Conclusion and outlook
 
-As you can see, the Keyword in its context is rendered as a link. But clicking on it produces (for now) only a 404 (page not found) error. 
+Now we are (almost) done. There is just one thing left to adjust. As you can see, the Keyword in its context is rendered as a link. But clicking on it produces (for now) only a 404 (page not found) error. 
 
 To fix this, we could (once more) copy and paste parts of the code used for the index based search results view. But since this would be now the third time we copy paste very similar functionalities, we should do something more advanced like writing a reusable function. But this we will engage in the [next part](../part-9-code-refactoring). 
 
