@@ -215,7 +215,7 @@ Searching now for e.g. 'Schreckensruf' returns "1 Hit":
 
 ## What did I search for
 
-The last thing (for now) we could do to improve the usability of ft_search.html is to display the actual search term. Like the hit count this could be done on the front end as well on the back end. Or, to use different words, on the client or on the server side. Again we will choose the front end. Which means that the users browser will have to do all the work and not the server which hosts the application. 
+The last thing (for now) we could do to improve the usability of `ft_search.html` is to display the actual search term. Like the hit count this could be done on the front end as well on the back end. Or, to use different words, on the client or on the server side. Again we will choose the front end. Which means that the users browser will have to do all the work and not the server which hosts the application. 
 The task we try to accomplish is quite similar to the task before. First we have to fetch the actual search term from somewhere, store it to a variable and then add the variables value to an element of our choice. So let's start with fetching the search term. Since we are using a GET-request to submit the search term to the server, the serarch term is exposed in the URL as value of the ?searchexpr=` parameter. The only thing we have to do is to write a function which can parse URL params. Since this is a quit common issue, a *google-first* approach spares us from thinking coming up with [this](https://www.sitepoint.com/url-parameters-jquery/) solution amongst others. Go on and include this function and adapt your existing code so it looks like the following snippet in **pages/ft_search.html**:
 
 ```javascript
@@ -254,7 +254,7 @@ As you can see we are we adding the value of the fetched URL param to an HTML el
 
 When we now search for e.g. 'kirche' our result page should like this:
 
-![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-8/image_6.jpg)
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-8/image_7.jpg)
 
 # Conclusion and outlook
 
