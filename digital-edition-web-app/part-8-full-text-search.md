@@ -119,7 +119,7 @@ But of course, when we now want to browse to this page, we will receive an error
 
 In **/modules/app.xql** create a new function called app:ft_search. This function has to parse the search string handed, build a full text search query and return the results to ft_search.html in a nice and KWIC way. This all can be achieved with the following few lines of code:
 
-```
+```xquery
 declare function app:ft_search($node as node(), $model as map (*)) {
     if (request:get-parameter("searchexpr", "") !="") then
     let $searchterm as xs:string:= request:get-parameter("searchexpr", "")
@@ -140,9 +140,8 @@ declare function app:ft_search($node as node(), $model as map (*)) {
 
 But trying to browse to [http://localhost:8080/exist/apps/thun-demo/pages/ft_search.html](http://localhost:8080/exist/apps/thun-demo/pages/ft_search.html) now will still result in an error message, but this time complaining about missing namespace definition. This is because we are using eXist-db’s xQuery module [kwic](http://exist-db.org/exist/apps/doc/kwic.xml) but without importing it first. To do so, we have to add the following line below the import statement for the config module: 
 
-```
+```xquery
 import module namespace config="http://www.digital-archiv.at/ns/thun-demo/config" at "config.xqm";
-
 import module namespace kwic = "http://exist-db.org/xquery/kwic" at "resource:org/exist/xquery/lib/kwic.xql";
 ```
 
@@ -179,7 +178,7 @@ Now we can use a jQuery statement `var hits = ($('td.KWIC').children('p').length
 
 The next step is to display this value. Therefore we add a `<h1><span id="hitcount"></span> Hits</h1>` to our **pages/ft_search.html** document which will be populated when the page has finished loading with the help of the following little jQuery function: 
 
-```jquery
+```javascript
 <script>
 $( document ).ready(function() {
     var hits = ($('td.KWIC').children('p').length);
