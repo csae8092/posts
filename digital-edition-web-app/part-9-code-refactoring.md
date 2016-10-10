@@ -161,7 +161,7 @@ declare function app:listPers_hits($node as node(), $model as map(*), $searchkey
 
 ## app:toc
 
-```
+```xquery
 declare function app:toc($node as node(), $model as map(*)) {
     for $doc in collection(concat($config:app-root, '/data/editions/'))//tei:TEI
         return
