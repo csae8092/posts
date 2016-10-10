@@ -62,11 +62,11 @@ The new **pages/index.html** should look like this.
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
             <div class="item active">
-                <img src="$app-root/resources/img/ACDH_Panorama_Postkarte_motiv01.jpg" alt="First" width="1200" height="600" title="by Sandra Lehecka">
+                <img src="$app-root/resources/img/ACDH_Panorama_Postkarte_motiv01.jpg" alt="First" width="1200" height="600" title="by Sandra Lehecka"/>
                 <div class="carousel-caption"/>
             </div>
             <div class="item">
-                <img src="$app-root/resources/img/ACDH_Panorama_Postkarte_motiv02.jpg" alt="a nice feature picture" width="1200" height="600" title="by Sandra Lehecka">
+                <img src="$app-root/resources/img/ACDH_Panorama_Postkarte_motiv02.jpg" alt="a nice feature picture" width="1200" height="600" title="by Sandra Lehecka"/>
                 <div class="carousel-caption"/>
             </div>
         </div>
@@ -255,6 +255,7 @@ The modified templates/page.html could look as follows:
         <link rel="stylesheet" type="text/css" href="$app-root/resources/css/style.css"/>
         <script type="text/javascript" src="$app-root/resources/js/jquery/jquery-2.2.1.min.js"/>
         <script type="text/javascript" src="$app-root/resources/js/bootstrap-3.0.3.min.js"/>
+        <script type="text/javascript" src="$app-root/resources/js/custom.js"/>
     </head>
     <body id="body">
         <nav class="navbar navbar-default" role="navigation">
@@ -388,22 +389,52 @@ While we are already working on improving the application's usability we can imp
         <form method="get" action="ft_search.html" class="navbar-form" id="pageform">
             <div class="form-group">
                 <div class="input-group">
-                    <input type="text" class="form-control" name="searchexpr"/>
+                    <input type="text" class="form-control" name="searchexpr" placeholder="search in all inventories" pattern=".{3,}" required="" title="3 characters minimum"/>
                 </div>
-                <button type="submit" class="btn btn-primary">
-                    <span class="glyphicon glyphicon-search" aria-hidden="true" title="fulltext search over all documents"></span>
-                </button>
+                <button type="submit" class="btn btn-primary">search</button>
             </div>
         </form>
     </div>
 </div>
 ```
 
+
 This will render as a search field in the top right corner as depicted in the following screenshot:
 
 ![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-10/image_7.jpg)
 
-Having a general search field, we basically don't need to link to ft_search.html any more in the nav bar since we would then provide to our users two ways to achieve the same things and this is something I personally always find a bit annoying. Therefore I will remove the link to this page from the nav bar. Alternatively we could think about implementing something like an **advanced search** where users can customize e.g. in which parts or elements of the XML/TEI documents they want to search for. But since such a feature very much depends on the actual data, it is not an easy thing to include such a feature in a web applications like ours which tries to be as generic as possible. 
+By adding the attributes `required=""` and `pattern=".{3,}"` to the input form, we enforce a minimum length of the search string of three characters. 
+
+Having a general search field, we basically don't need to link to **ft_search.html** any more in the nav bar since we would then provide to our users two ways to achieve the same things and this is something I personally always find a bit annoying. Therefore I will remove the link to this page from the nav bar. Alternatively we could think about implementing something like an **advanced search** where users can customize e.g. in which parts or elements of the XML/TEI documents they want to search for. But since such a feature very much depends on the actual data, it is not an easy thing to include such a feature in a web applications like ours which tries to be as generic as possible. 
+Likewise we can now remove the input field in **ft_search.html** as well.
+
+# Cookie consent and Share-Buttons
+
+## Cookie consent
+In case you plan to gather some user statics or you want to implement some other features which depend on cookies, it is a good idea to inform your users that you are using cookings. Since almost every page uses cookies there are plenty of libraries providing the necessary functionalities to inform users accordingly. We use one from [Silktide](http://silktide.com/cookieconsent). Here you can also read about any customization options.
+The only thing we have to do for this to add the following code snippet in our base template **templates/page.html** somewhere towards the end of the `<head>` element
+
+```html
+...
+<!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+    <script type="text/javascript">
+        window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":"index.html","theme":"dark-bottom"};
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"/>
+<!-- End Cookie Consent plugin -->
+```
+
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-10/image_8.jpg)
+
+
+## share buttons
+
+To enable our users to share the contents of our web app, we will implement also some share buttons for [facebook](https://www.facebook.com/), [twitter](https://twitter.com/), and [google+](https://plus.google.com/). For this we are following this [tutorial](http://tutorialzine.com/2014/08/cool-share-jquery-plugin/) provided by the fantastic site [http://tutorialzine.com/](http://tutorialzine.com/).
+In case you are interested in the actual implementation, please look into the finalized code of this tutorial which you can download [here](https://github.com/csae8092/posts/raw/master/digital-edition-web-app/downloads/part-10/thun-demo-0.1.xar).
+On the screenshots below you can see the result of our efforts:
+
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-10/image_9.jpg)
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-10/image_10.jpg)
 
 # One last thing
 
