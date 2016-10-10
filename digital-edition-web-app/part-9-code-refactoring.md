@@ -115,13 +115,39 @@ The solution for highlighting search results presented above is not perfect yet.
 * Unlike the actual full text search, the highlighting function is case sensitive. This means you can search for 'leben' or 'Leben' and it will list the same results. But if the URL-param passed to the show.html is 'leben' any string in the HTML containing 'Leben' will NOT be highlighted.
 * Finally you also have be aware that we are defining exactly the same function for parsing URL params two times in our code base.
 
+At least the last issue should be resolved immediately, especially when we remind ourself that this chapter is called "Code refactoring". Luckily this is an easy fix. We simply have to create a new document **resources/js/custom.js** and add the following lines of code:
+
+```javascript
+$.urlParam = function(name){
+    var results = new RegExp('[\?&amp;]' + name + '=([^&amp;]*)').exec(window.location.href);
+    if (results == null ){
+        return null;
+    }
+    else{
+        return results[1] || 0;
+    }
+};
+```
+
+Then we import this `custom.js` in our base template **templates/pages.html** just before the closing tag of the `<head>`element:
+
+```html
+...
+  <script type="text/javascript" src="$app-root/resources/js/custom.js"/>
+</head>
+<body id="body">
+...
+```
+
+After this, we can go to **pages/show.html** and **ft_search.html** and remove the `$.urlParam` function definition.
+
 # All or nothing
 
 Since we now wrote functions to avoid too much copy pasting, we should now go through our code and replace lines of code which are doing the same as our functions against those functions. Yes, this sounds like some boring task and yes, our application will continue working without doing this. But keeping the code in a consistent state, meaning that same things are always build the same way, will ease the burden of maintaining the application, no matter if you or someone else will be in charge. 
 
 ## app:listPers_hits
 
-```
+```xquery
 declare function app:listPers_hits($node as node(), $model as map(*), $searchkey as xs:string?, $path as xs:string?)
 {
     for $hit in collection(concat($config:app-root, '/data/editions/'))//tei:TEI[.//tei:persName[@key=$searchkey] |.//tei:rs[@ref=concat("#",$searchkey)] |.//tei:rs[@key=contains(./@key,$searchkey)]]
