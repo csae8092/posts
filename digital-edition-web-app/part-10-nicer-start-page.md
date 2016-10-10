@@ -434,7 +434,7 @@ In case you are interested in the actual implementation, please look into the fi
 On the screenshots below you can see the result of our efforts:
 
 ![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-10/image_9.jpg)
-![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-10/image_10.jpg)
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/a54b3c3491004bebda0746f5a0d5f0ee6ec32f24/digital-edition-web-app/images/part-10/image_10.jpg)
 
 # One last thing
 
