@@ -60,11 +60,64 @@ Finally we can browse to [http://localhost:8080/exist/apps/thun-demo/pages/ft_se
 
 ![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-9/image_0.jpg)
 
-and clicking on "Leben" to get to the actual document.  ![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-9/image_1.jpg)
+and clicking on "Leben" to get to the actual document. 
+
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-9/image_1.jpg)
+
+## Highlight search results in actual document
+
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-9/image_2.jpg)
+
+Ideally the occurrences of 'leben' would be highlighted, so users can find the locations of the expression they searched for quickly. Of course they could always use the in build browser search by pressing `ctrl + f` but not everyone is aware of this functionality. 
+Such a highlighting could be handled - once more - either by the server or by the client (browser). And once more we chose the second option.
+Basically the browser has to accomplish the following tasks:
+ 
+* fetch the search string;
+* search in the HTML (or to be more precise in the DOM, the [Document Object Model](linkToDOM)) for all occurrences of this search string;
+* and wrap e.g. a `<span style="background-color: orange;"/>` element around.
+
+All this can be done with the help of a little bit of javaScript/jQuery scripting in **pages/show.html**. But before we can get started working on this page, we have to somehow inform **pages/show.html** about the expression we are actually searching for. This can be accomplished quit easily by passing this information as an URL parameter to **pages/show.html**. Therefore we have to modify the value of `$href` variable in the function **modules/app.xql app:app:ft_search** from `let $href := app:hrefToDoc($hit)` to `let $href := concat(app:hrefToDoc($hit), "&amp;searchexpr=", $searchterm)`. 
+When we are now looking for 'leben' and follow now the links listed in the result page, we see that the links to the detail views are now 'storing' the search string as value of the URL param 'searchexpr': http://localhost:8080/exist/apps/thun-demo/pages/show.html?document=aufsatz-von-langenau-ueber-einfluss-von-windischgraetz-1848_1849-12_A3-XXI-D23.xml&searchexpr=leben.
+
+The next step should be familiar from the [last](../part-8-full-text-search) tutorial. With a little function we are parsing the URL parameters and store the results in a variable (`fetched_url_param`). Then we go through all child nodes of an element with the id 'transcribed_text' (which according to the stylesheet we are using to transform the XML/TEI into HTML holds the transcribed text), search for the value stored in `fetched_url_param`) and wrap a `<span/>` element around. All this is accomplished by the following code snippet added to **pages/show.html**
+
+```javascript
+<script>
+  $( document ).ready(function() {
+    /*http://stackoverflow.com/questions/16090487/find-a-string-of-text-in-an-element-and-wrap-some-span-tags-round-it*/
+    $.urlParam = function(name){
+      var results = new RegExp('[\?&amp;]' + name + '=([^&amp;]*)').exec(window.location.href);
+      if (results == null ){
+        return null;
+      }
+      else{
+        return results[1] || 0;
+      }
+    };
+    var fetched_url_param = decodeURIComponent($.urlParam('searchexpr'));
+      console.log(fetched_url_param);
+      $('#transcribed_text').html(function(_, html) {
+        var re = new RegExp(fetched_url_param, "g");
+        return  html.replace(re, '<span style="background-color: orange;">'+fetched_url_param+'</span>')
+      });
+  });
+</script>
+```
+Now, if users are looking for 'leben' again all occurrences of this search expression should be highlighted with orange.
+
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-9/image_3.jpg)
+
+### not perfect yet
+
+The solution for highlighting search results presented above is not perfect yet. 
+
+* First it will search and replace all strings found in every child node of an element with `id='transcribed_text'. This includes e.g. attributes and their values, so be aware of possible unwanted side effects.
+* Unlike the actual full text search, the highlighting function is case sensitive. This means you can search for 'leben' or 'Leben' and it will list the same results. But if the URL-param passed to the show.html is 'leben' any string in the HTML containing 'Leben' will NOT be highlighted.
+* Finally you also have be aware that we are defining exactly the same function for parsing URL params two times in our code base.
 
 # All or nothing
 
-Since we now wrote functions to avoid too much copy pasting, we should now go through our code and replace lines of code which are doing the same as our functions against those functions. Yes, this sounds like some boring task and yes, our application will continue working without doing this. But keeping the code in a consistent state meaning that same things are always build the same way will ease the burden of maintaining the application, no matter if you or someone else will be in charge. 
+Since we now wrote functions to avoid too much copy pasting, we should now go through our code and replace lines of code which are doing the same as our functions against those functions. Yes, this sounds like some boring task and yes, our application will continue working without doing this. But keeping the code in a consistent state, meaning that same things are always build the same way, will ease the burden of maintaining the application, no matter if you or someone else will be in charge. 
 
 ## app:listPers_hits
 
