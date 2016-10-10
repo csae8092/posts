@@ -405,7 +405,7 @@ This will render as a search field in the top right corner as depicted in the fo
 
 By adding the attributes `required=""` and `pattern=".{3,}"` to the input form, we enforce a minimum length of the search string of three characters. 
 
-Having a general search field, we basically don't need to link to **ft_search.html** any more in the nav bar since we would then provide to our users two ways to achieve the same things and this is something I personally always find a bit annoying. Therefore I will remove the link to this page from the nav bar. Alternatively we could think about implementing something like an **advanced search** where users can customize e.g. in which parts or elements of the XML/TEI documents they want to search for. But since such a feature very much depends on the actual data, it is not an easy thing to include such a feature in a web applications like ours which tries to be as generic as possible. 
+Having a general search field, we basically don't need to link to `ft_search.html` any more in the nav bar since we would then provide to our users two ways to achieve the same things and this is something I personally always find a bit annoying. Therefore I will remove the link to this page from the nav bar. Alternatively we could think about implementing something like an **advanced search** where users can customize e.g. in which parts or elements of the XML/TEI documents they want to search for. But since such a feature very much depends on the actual data, it is not an easy thing to include such a feature in a web applications like ours which tries to be as generic as possible. 
 Likewise we can now remove the input field in **ft_search.html** as well.
 
 # Cookie consent and Share-Buttons
