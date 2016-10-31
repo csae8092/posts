@@ -22,9 +22,9 @@ In the upcoming posts, we will improve our already existing features.
 
 2. We will add a **KWIC** snippets to the results of our index based view.
 
-3. We will implement pop ups containing further information for entities like persons and places tagged in the edition.
+3. We will implement **pop ups containing further information for entities like persons and places** tagged in the edition.
 
-4. We will add a searchable geovisualization of Places mentioned in our editions. 
+4. We will add a **search-able geovisualization** of places mentioned in our editions. 
 
 ## Disclaimer
 Those features mentioned above are depending on specif mark up of the XML/TEI documents of our editions as well as some extra information (like gps-coordinates for places). To implement those features into your digital edition web application you either have to adapt your data or to modify the application's code to make it fit your data. 
