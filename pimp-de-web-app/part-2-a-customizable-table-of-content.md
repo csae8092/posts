@@ -102,3 +102,8 @@ The table of content is not the only place in our application where we could use
 To implement tablesorter, we simply have to import the same libraries as before to **pages/ft_search.html** and the result will look like on the picture below:
 
 ![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-2/image_5.jpg). 
+
+
+# Conclusion and Outlook
+
+Our Table(s of content) can now be searched/filtered and sorted by the users. In the [next part]() we will tackle the not so well working person-index and by addressing this issue we will also investigate a solution on how to bookmark results, filtered with tablesorter. As usual, the code created so far can be downloaded [here](https://github.com/csae8092/posts/raw/master/pimp-de-web-app/downloads/part-2/aratea-digital-0.2.xar)). 
