@@ -53,4 +53,4 @@ You can download the needed `xar.package` [here](https://github.com/csae8092/pos
 
 ## Conclusion and Outlook
 
-Having all this done, with can start in the next [HowTo](../) with creating a **customizable Table of Content**. But since there is another project besides the Thun-Project waiting to be finished, we will start working with another data set. But I wont spoil, so if you are curious, what we are going to build, what kind of edition we are going to build, go on and [reading](../).
+Having all this done, with can start in the next [HowTo](../) with creating a **customizable Table of Content**. But since there is another project besides the Thun-Project waiting to be finished, we will start working with another data set. But I wont spoil, so if you are curious, what kind of edition we are going to build, go on and [reading](..//part-2-a-customizable-table-of-content).
