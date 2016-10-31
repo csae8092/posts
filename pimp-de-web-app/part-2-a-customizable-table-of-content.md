@@ -106,4 +106,4 @@ To implement tablesorter, we simply have to import the same libraries as before 
 
 # Conclusion and Outlook
 
-Our Table(s of content) can now be searched/filtered and sorted by the users. In the [next part](../part-3-bookmark-filtered-tablesorter-results) we will tackle the not so well working person-index and by addressing this issue we will also investigate a solution on how to bookmark results, filtered with tablesorter. As usual, the code created so far can be downloaded [here](https://github.com/csae8092/posts/raw/master/pimp-de-web-app/downloads/part-2/aratea-digital-0.2.xar)). 
+Our Table(s of content) can now be searched/filtered and sorted by the users. In the [next part](../part-3-bookmark-filtered-tablesorter-results) we will tackle the not so well working person-index and by addressing this issue we will also investigate a solution on how to bookmark results, filtered with tablesorter. As usual, the code created so far can be downloaded [here](https://github.com/csae8092/posts/raw/master/pimp-de-web-app/downloads/part-2/aratea-digital-0.2.xar). 
