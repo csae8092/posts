@@ -27,9 +27,73 @@ Basically we could enable some user interaction on the client side (in the front
 We will opt for a client side solution because then we can use a JavaScript library called [tablesorter](http://tablesorter.com/docs/) which fulfills our requirements almost completely out of the box. With this, we don't have to do much coding by ourself and we don't have to communicate too much with the server.
 But we have to be aware that this solutions does not scale very well. In case we have a lot of documents stored in `data/editions` all this information would be sent to and processed by the client at once which could lead waiting times each time our page with the table of content will be loaded. 
 
-### ad the library
+### add the library
 
-First thing we have to do to implement tablesorter is to add the necessary libraries to **resources/js**. You can download the needed files either from [tablesorter's website](http://tablesorter.com/docs/) or you from [here]
+First thing to do for implementing **tablesorter** is to add the necessary libraries to **resources/js**. You can download the needed files either from [tablesorter's website](http://tablesorter.com/docs/) or in zipped from from [here](https://github.com/csae8092/posts/raw/master/pimp-de-web-app/downloads/libraries/tablesorter.zip). In case you chose the latter option, unzip the files and add them **resources/js/tablesorter**. This directory should now look like depicted below:
+
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-2/image_0.jpg)
+
+### include/load the library
+
+In a next step we have to import/load those files into our html-pages. We could do this one time in our application's base template (**templates/base.html**) or only in those pages, where we actually going to use this library. Let's go with the second option so we don't produce too much traffic.
+So open **pages/toc.html** and add the following lines of code:
+
+```html
+<div class="templates:surround?with=templates/page.html&amp;at=content">
+    <script src="$app-root/resources/js/tablesorter/js/jquery.tablesorter.js"/>
+    <script src="$app-root/resources/js/tablesorter/js/jquery.tablesorter.widgets.js"/>
+    <script src="$app-root/resources/js/tablesorter/js/jquery.tablesorter.pager.js"/>
+    <link rel="stylesheet" type="text/css" href="$app-root/resources/js/tablesorter/css/theme.bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="$app-root/resources/js/tablesorter/css/jquery.tablesorter.pager.css"/>
+    <script> $(function() { $("table").tablesorter({ theme : "bootstrap", widthFixed: false,
+        headerTemplate : '{content} {icon}', widgets : [ "uitheme", "filter", "zebra" ], filter_cssFilter: "form-control", }) }); 
+    </script>
+    <h1>Table of Content</h1>
+    <div data-template="app:toc"/>
+    
+    <table class="table table-striped table-condensed table-hover">
+        <thead>
+            <tr align="center" font-size="1.0em">
+                <th class="header">
+                    file
+                </th>
+            </tr>
+        </thead>
+        <tr data-template="app:toc"/>
+    </table>
+</div>
+```
+
+When we browse no to [http://localhost:8080/exist/apps/aratea-digital/pages/toc.html](http://localhost:8080/exist/apps/aratea-digital/pages/toc.html) we won't see any breathtaking results. The only visible change is the little word "file".
+
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-2/image_1.jpg)
+
+This is of course related to the xQuery function **app:toc** which we have to modify now according to the code snippet below: **modules/app.xql**
+
+```xquery
+declare function app:toc($node as node(), $model as map(*)) {
+    for $doc in collection(concat($config:app-root, '/data/editions/'))//tei:TEI
+        return
+        <tr>
+            <td>
+                <a href="{app:hrefToDoc($doc)}">{app:getDocName($doc)}</a>
+            </td>
+        </tr>   
+};
+```
+
+Now changes are slightly more visible but only still not very useful: 
+
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-2/image_2.jpg)
+
+The reason for this are obviously some css-issues which we can solve in (at least) two ways. We could 1) override tablesorters own css (**resources/js/tablesorter/css/theme.bootstrap.css**) or simiply exchange our application's bootstrap theme. Since the later option is related to less work, I chose this one and will use the [Yeti-Theme](http://bootswatch.com/yeti/). See [here](../part-2-getting-started) on how to apply a new theme.
+
+Finally, our users can sort and filter the table of content according to their needs. 
+
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-2/image_3.jpg)
+
+
+
 
 
 
