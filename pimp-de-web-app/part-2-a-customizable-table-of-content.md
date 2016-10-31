@@ -93,8 +93,12 @@ Finally, our users can sort and filter the table of content according to their n
 ![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-2/image_3.jpg)
 
 
+### tablesorter everywhere
 
+The table of content is not the only place in our application where we could use the tablesorter. Such a search-/filter-, and sortable table would also be quite handy for the result page of our fulltext search. Searching e.g. for [perseus](http://localhost:8080/exist/apps/aratea-digital/pages/ft_search.html?searchexpr=perseus)** results in table like the one depcited below:
 
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-2/image_4.jpg)
 
+To implement tablesorter, we simply have to import the same libraries as before to **pages/ft_search.html** and the result will look like on the picture below:
 
-
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-2/image_5.jpg). 
