@@ -28,3 +28,29 @@ In the upcoming posts, we will improve our already existing features.
 
 ## Disclaimer
 Those features mentioned above are depending on specif mark up of the XML/TEI documents of our editions as well as some extra information (like gps-coordinates for places). To implement those features into your digital edition web application you either have to adapt your data or to modify the application's code to make it fit your data. 
+
+## Code Base
+
+For this book we will start with the code developed in [Part 10](../part-10-nicer-start-page) of the previous book [How to build a digital edition web app](../books/how-to-build-a-digital-edition-web-app/), enhanced with the `sync.xql` script added in [Part 11](../part-11-start-a-new-project/). I also changed the existing **thun-demo/collection.xconf`** document into 
+
+```xml
+<collection xmlns="http://exist-db.org/collection-config/1.0">
+    <index xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <fulltext default="none" attributes="false"/>
+        <create qname="tei:term" type="xs:string"/>
+        <create qname="tei:persName" type="xs:string"/>
+        <create qname="tei:placeName" type="xs:string"/>
+        <lucene>
+            <text qname="tei:p"/>
+        </lucene>
+    </index>
+</collection>
+```
+
+Because now, whenever you will install this application, it will automatically index it's data.
+
+You can download the needed `xar.package` [here](https://github.com/csae8092/posts/raw/master/pimp-de-web-app/downloads/part-1/thun-demo-0.1.xar).
+
+## Conclusion and Outlook
+
+Having all this done, with can start in the next [HowTo](../) with creating a **customizable Table of Content**. But since there is another project besides the Thun-Project waiting to be finished, we will start working with another data set. But I wont spoil, so if you are curious, what we are going to build, what kind of edition we are going to build, go on and [reading](../).
