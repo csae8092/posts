@@ -1,6 +1,6 @@
 # Introduction and requirements
 
-In this part we will 1. rename our thun-demo project, 2. add new data and 3. add a customizable Table of Content. Although basically steps one and two are merely repetitions of [this post](../part-11-start-a-new-project/), so I keep the instructions very limited.
+In this part we will 1. rename our thun-demo project, 2. add new data and 3. add a customizable Table of Content. Due to the fact that the steps one and two are merely repetitions of [this post](../part-11-start-a-new-project/), I keep the instructions very limited.
 
 ## Start the new project
 

@@ -57,3 +57,5 @@ After these changes, our person index is now sort-, as well as filter- or search
 ![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-3/image_1.jpg)
 
 
+
+

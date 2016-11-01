@@ -31,7 +31,7 @@ Those features mentioned above are depending on specif mark up of the XML/TEI do
 
 ## Code Base
 
-For this book we will start with the code developed in [Part 10](../part-10-nicer-start-page) of the previous book [How to build a digital edition web app](../books/how-to-build-a-digital-edition-web-app/), enhanced with the `sync.xql` script added in [Part 11](../part-11-start-a-new-project/). I also changed the existing **thun-demo/collection.xconf`** document into 
+For this book we will start with the code developed in [Part 10](../part-10-nicer-start-page) of the previous book [How to build a digital edition web app](../books/how-to-build-a-digital-edition-web-app/), enhanced with the `sync.xql` script added in [Part 11](../part-11-start-a-new-project/). I also changed the existing `thun-demo/collection.xconf` document into 
 
 ```xml
 <collection xmlns="http://exist-db.org/collection-config/1.0">
@@ -53,4 +53,4 @@ You can download the needed `xar.package` [here](https://github.com/csae8092/pos
 
 ## Conclusion and Outlook
 
-Having all this done, with can start in the next [HowTo](../) with creating a **customizable Table of Content**. But since there is another project besides the Thun-Project waiting to be finished, we will start working with another data set. But I wont spoil, so if you are curious, what kind of edition we are going to build, go on and [reading](..//part-2-a-customizable-table-of-content).
+Having all this done, with can start in the next HowTo with creating a **customizable Table of Content**. But since there is another project besides the **Thun-Project** waiting to be finished, we will start working with another data set. But I wont spoil, so if you are curious, what kind of edition we are going to build, go on [reading](../part-2-a-customizable-table-of-content).
