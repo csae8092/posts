@@ -15,11 +15,11 @@ In this part we will 1. rename our thun-demo project, 2. add new data and 3. add
 
 3. Remove "thun-demo" traces in the **build.xml** and replace it with something like **aratea-digital**
 
-4. Replace the content of the data directory (and its sub directories) with the directories bundled in [this zip-file] which contains the data of our new project. In case you want to know more about this project, please refer to [http://www.digital-archiv.at/aratea-online/](http://www.digital-archiv.at/aratea-online/).
+4. Replace the content of the data directory (and its sub directories) with the directories bundled in [this zip-file](https://github.com/csae8092/posts/raw/master/pimp-de-web-app/downloads/aratea-data.zip) which contains the data of our new project. In case you want to know more about this project, please refer to [http://www.digital-archiv.at/aratea-online/](http://www.digital-archiv.at/aratea-online/).
 
 5. Again in eXides menu bar go to **Application --> Download app** or, alternatively evaluate the **sync.xql** script to serialize/save the application's code to your local machine. 
 
-In the end you should have a .xar package like the one you can download [here](https://github.com/csae8092/posts/raw/master/pimp-de-web-app/downloads/part-1/aratea-digital-0.1.xar).
+In the end you should have a .xar package like the one you can download [here](https://github.com/csae8092/posts/raw/master/pimp-de-web-app/downloads/part-2/aratea-digital-0.1.xar).
 
 ## Tablesorter-JS
 
