@@ -31,6 +31,7 @@ declare function app:listPlace($node as node(), $model as map(*)) {
             </td>
         </tr>
 };
+```
 
 Then create a new document `pages/places.html` and, copy&paste the code from `pages/persons.html` and again, replace any person related passages with the according place-strings.
 
@@ -124,7 +125,8 @@ But when we now try to follow these links get to the actual documents containing
 
 ![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-4/image_3.jpg)
 
-This has to be considered as feature and not as bug, because the application or, to me more precise the function `app:XMLtoHTML` in **modules/app.xql** : does exactly what we told her to do. It is looking for a document called **Leiden_VLQ_79.xml** in the collection `data/editions/` and transform this - none existing one -  with the default stylsheet `resources/xslt/xmlToHtml.xsl`. 
+This has to be considered as feature and not as bug, because the application or, to me more precise the function `app:XMLtoHTML` in **modules/app.xql**: does exactly what we told her to do. It is looking for a document called **Leiden_VLQ_79.xml** in the collection `data/editions/` and transform this - none existing one -  with the default stylsheet `resources/xslt/xmlToHtml.xsl`.
+
 Lucky for us the we parametrized this function already [see Part 9 - Code refactoring](../part-9-code-refactoring/). What is left to do now is to find out, if a document is either a description or an edition and based on this, add the according `?directory=` parameter.
 Something we can achieve be rewriting `app:listPers_hits` in **modules/app.xql** into:
 
@@ -142,7 +144,7 @@ for $hit in collection(concat($config:app-root, '/data/'))//tei:TEI[.//*[@key=$s
 ```
 After saving our modifications, we can click on e.g. **Leiden_VLQ_79.xml** and should be directed from  [http://localhost:8080/exist/apps/aratea-digital/pages/hits.html?searchkey=germanicus](http://localhost:8080/exist/apps/aratea-digital/pages/hits.html?searchkey=germanicus) to the [detail view of  manuscript description](http://localhost:8080/exist/apps/aratea-digital/pages/show.html?document=Leiden_VLQ_79.xml&directory=descriptions). 
 
-![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-4/image_3.jpg)
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-4/image_4.jpg)
 
 This HTML representation looks a bit messy - point taken - but this is simply a matter of the used stylesheet. But since we are currently working on `app:listPers_hits` in **modules/app.xql** anyway, let's add another stylesheet slightly more specifically for manuscript descriptions. You can download this stylesheet from [here](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/downloads/part-4/descriptions.xsl).
 
@@ -161,26 +163,5 @@ for $hit in collection(concat($config:app-root, '/data/'))//tei:TEI[.//*[@key=$s
     </li> 
  };
  ```
-Then we rename our default stylesheet from `resources/xslt/xmlToHtml.xsl` into `resources/xslt/editions.xsl` and finally, change `app:XMLtoHTML` accordingly by changing the default value for `$xslPath` from "xmlToHtml" into "editions".
-
-```xquery
-declare function app:XMLtoHTML ($node as node(), $model as map (*), $query as xs:string?) {
-let $ref := xs:string(request:get-parameter("document", ""))
-let $xmlPath := concat(xs:string(request:get-parameter("directory", "editions")), '/')
-let $xml := doc(replace(concat($config:app-root,'/data/', $xmlPath, $ref), '/exist/', '/db/'))
-let $xslPath := concat(xs:string(request:get-parameter("stylesheet", "editions")), '.xsl')
-let $xsl := doc(replace(concat($config:app-root,'/resources/xslt/', $xslPath), '/exist/', '/db/'))
-let $params := 
-<parameters>
-   {for $p in request:get-parameter-names()
-    let $val := request:get-parameter($p,())
-    where  not($p = ("document","directory","stylesheet"))
-    return
-       <param name="{$p}"  value="{$val}"/>
-   }
-</parameters>
-return 
-    transform:transform($xml, $xsl, $params)
-};
-```
+Then we rename our default stylesheet from `resources/xslt/xmlToHtml.xsl` into `resources/xslt/editions.xsl` and finally, change `app:XMLtoHTML` in **modules/app.xql** accordingly by changing the default value for `$xslPath` from "xmlToHtml" into "editions": `let $xslPath := concat(xs:string(request:get-parameter("stylesheet", "editions")), '.xsl')`. 
 
