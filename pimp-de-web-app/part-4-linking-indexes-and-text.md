@@ -203,4 +203,6 @@ What is left to do now is to rename this function since it does not only return 
 
 # Conclusion and Outlook
 
-With this post we implement a framework/workflow/functionality which allows us to add/customize our registers/index quit easily and without too much copy&pasting. The recent code-base is available for dowonload [here](https://github.com/csae8092/posts/raw/master/pimp-de-web-app/downloads/part-4/aratea-digital-0.1.xar)Now that we have set up the core functionalities we should improve the look and the usability of **pages/hits.html**. But this will be the topic of the [next post](../part-5-improve-index-based-search). 
+With this post we implement a framework/workflow/functionality which allows us to add/customize our registers/index quit easily and without too much copy&pasting. The recent code-base is available for download [here](https://github.com/csae8092/posts/raw/master/pimp-de-web-app/downloads/part-4/aratea-digital-0.1.xar).
+
+Now that we have set up the core functionalities we should improve the look and the usability of **pages/hits.html**. But this will be the topic of the [next post](../part-5-improve-index-based-search/). 
