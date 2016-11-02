@@ -67,6 +67,63 @@ Now a link like e.g. [http://localhost:8080/exist/apps/aratea-digital/pages/hits
 ![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-5/image_0.jpg).
 
 ## KWIC
+Ideally our results table could be expanded by at least two more colums. One column would of course contain the KWIC of the searched index term whereas the other column would count the number of matches per document. For this we have to adapt the table structure in **pages/hits.html**:
+
+```html
+...
+    <table>
+        <thead>
+            <tr>
+                <th>Hits</th>
+                <th>KWIC</th>
+                <th>matching documents</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-template="app:registerBasedSearch_hits"/>
+        </tbody>
+    </table>
+...
+```
+So far the easier part. What's left to do is to provide some content for these columns, because right now e.g. [http://localhost:8080/exist/apps/aratea-digital/pages/hits.html?searchkey=germanicus] looks a bit weired:
+
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-5/image_1.jpg).
+
+As we all know, the 'content' for those rows is provided by `app:registerBasedSearch_hits` stored in **modules/app.xql** which we have to modify like this:
+
+```xquery
+declare function app:registerBasedSearch_hits($node as node(), $model as map(*), $searchkey as xs:string?, $path as xs:string?)
+{
+for $title in collection(concat($config:app-root, '/data/'))//tei:TEI[.//*[@key=$searchkey] | .//*[@ref=concat("#",$searchkey)] | .//tei:abbr[text()=$searchkey]]
+    let $doc := document-uri(root($title))
+    let $type := tokenize($doc,'/')[(last() - 1)]
+    let $params := concat("&amp;directory=", $type, "&amp;stylesheet=", $type)
+    let $matchingdoc := root($title)//tei:abbr[text()=$searchkey] | root($title)//*[@key=$searchkey] |  root($title)//*[@ref=concat("#",$searchkey)]
+    let $hits := count($matchingdoc)
+    let $snippet := 
+        for $context in $matchingdoc
+        let $before := $context/preceding::text()[1]
+        let $after := $context/following::text()[1]
+        return
+            <p>... {$before} <strong><a href="{concat(app:hrefToDoc($title), $params)}"> {$context/text()}</a></strong> {$after}...<br/></p>
+    order by -$hits
+    return
+    <tr>
+        <td>{$hits}</td>
+        <td>{$snippet}</td>
+        <td>
+            <a href="{concat(app:hrefToDoc($title),$params)}">{app:getDocName($title)}</a>
+        </td>
+    </tr> 
+ };
+```
+Now we can e.g. start an indexed based search for all documents (editions and manuscript descriptions) referring to the book e.g. "Dell'Era (1979)" [http://localhost:8080/exist/apps/aratea-digital/pages/hits.html?searchkey=Dell%27Era%20(1979)](http://localhost:8080/exist/apps/aratea-digital/pages/hits.html?searchkey=Dell%27Era%20(1979). The result will presented like this:
+
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-5/image_2.jpg).
+
+## Displaying the number of all hits.
+
+
 
 
 As usual you can download the latest code-base [here](https://github.com/csae8092/posts/raw/master/pimp-de-web-app/downloads/part-5/aratea-digital-0.1.xar).
