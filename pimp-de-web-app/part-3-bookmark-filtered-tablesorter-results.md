@@ -109,6 +109,6 @@ We could copy paste this code snippet now into `pages/toc.html` to allow users t
 # Conclusion and Outlook
 
 With just a few lines of code we are now able to bookmark filtered selections which is a nice feature. But you have to be aware that this only makes sense, in case you can provide some stable URLs for your application. You also have to be aware, that for the current solution only works properly on tablesorter tables with only one column/filter field. But we might tackle this issue in an upcoming posts. 
-In the [next post](../part-4-linking-indexes-and-text) we will have a closer look to our indexes in general, add some more indexes (or registers for places, literature and works) and think about how to connect the information stored in this indexes with the actual editions and manuscript descriptions.
+In the [next post](../part-4-linking-indexes-and-text) we will have a closer look to our indexes in general, add some more indexes (or registers for places, literature and organisations) and rework the code responsible for finding documents containing an searched index. 
 The code we wrote so far can be downloaded [here](https://github.com/csae8092/posts/raw/master/pimp-de-web-app/downloads/part-3/aratea-digital-0.1.xar).
 
