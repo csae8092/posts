@@ -81,7 +81,8 @@ When we now start typing into the filter field, we can observe that the URL in t
 
 ![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-3/image_2.jpg)
 
-Pretty neat, isn't it? But we are only have way there. Because if we try to copy this dynamically created URL, open a new browser window and open there this URL, we will the whole list of persons. So what we have to do now is somehow ingest the value our "?person=" param into the tablesorter's filter field, when the page loads. 
+Pretty neat, isn't it? But we are only have way there. Because if we try to copy this dynamically created URL, open a new browser window and browse to this URL, we will see the whole list of persons. 
+So what we have to do now is to ingest the value our "?person=" parameter into the tablesorter's filter field when the page loads. 
 This is done with the following changes: 
 
 ```javascript
@@ -100,5 +101,13 @@ This is done with the following changes:
 </script>
 ```
 
-In case you are wondering about this `$.urlParam()` function, we used it the [first time](../part-8-full-text-search/) to create a hitcount for the application's full text search and moved it while doing some [code refactoring](../part-9-code-refactoring/) into a custom javascript file `resources/js/custom.js`. But with this function we fetch the URL-param, save it as `fetched_param`. Then we check the value of this param and if there is some we inject into the tablesorter's setFilters() function. 
+In case you are wondering about this `$.urlParam()` function, we used it the [first time](../part-8-full-text-search/) to create a hitcount for the application's full text search and moved it while doing some [code refactoring](../part-9-code-refactoring/) into a custom javascript file `resources/js/custom.js`. But with this function we fetch the URL-param and save it as `fetched_param`. Then we check the value of this param and if there is some, (`if (fetched_param != "null")`) we inject it into the tablesorter's `setFilters()` function. 
 With this few lines of code in place, we can now bookmark a URL like https://dse.eos.arz.oeaw.ac.at/exist/apps/thun/pages/persons.html?person=Aar and send it e.g. to our scholarly friends and they will see the same filtered results.
+
+We could copy paste this code snippet now into `pages/toc.html` to allow users to bookmark a subset of the displayed editions. But we refrain from this for now, because we might rework this page in future to display more information to the users. 
+
+# Conclusion and Outlook
+
+With just a few lines of code we are now able to bookmark filtered selections which is a nice feature. But you have to be aware that this only makes sense, in case you can provide some stable URLs for your application. You also have to be aware, that for the current solution only works properly on tablesorter tables with only one column/filter field. But we might tackle this issue in an upcoming posts. 
+In the next issue we will have a closer look to our indexes in general, add some more indexes (or registers for persons, places, literature) and think about how to connect the information stored in this indexes with the actual editions.
+
