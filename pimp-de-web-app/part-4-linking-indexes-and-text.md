@@ -162,6 +162,45 @@ for $hit in collection(concat($config:app-root, '/data/'))//tei:TEI[.//*[@key=$s
         <a href="{concat(app:hrefToDoc($hit),$params)}">{app:getDocName($hit)}</a>  
     </li> 
  };
- ```
+```
+
 Then we rename our default stylesheet from `resources/xslt/xmlToHtml.xsl` into `resources/xslt/editions.xsl` and finally, change `app:XMLtoHTML` in **modules/app.xql** accordingly by changing the default value for `$xslPath` from "xmlToHtml" into "editions": `let $xslPath := concat(xs:string(request:get-parameter("stylesheet", "editions")), '.xsl')`. 
 
+## and the other registers?
+
+With these changes in place, our person index works now as expected. But what about the other indexes? Let's try e.g. [http://localhost:8080/exist/apps/aratea-digital/pages/hits.html?searchkey=tegernsee_abbey](http://localhost:8080/exist/apps/aratea-digital/pages/hits.html?searchkey=tegernsee_abbey), which seems to work as it returns a matching manuscript description:
+
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-4/image_5.jpg)
+
+Same is true for e.g. http://localhost:8080/exist/apps/aratea-digital/pages/hits.html?searchkey=strasbourg
+
+What does not work out of box is a search for dedicated bibliographic items. But this should not come as a surprise to us as referencing literature in editions and manuscript descriptions work sligthly different then referencing persons, places and organisations. To fix this, we have to add another condition to `app:listPers_hits` which should then look as the snippet below:
+
+```xquery
+declare function app:listPers_hits($node as node(), $model as map(*), $searchkey as xs:string?, $path as xs:string?)
+{
+for $hit in collection(concat($config:app-root, '/data/'))//tei:TEI[.//*[@key=$searchkey] | .//*[@ref=concat("#",$searchkey)] | .//tei:abbr[text()=$searchkey]]
+    let $doc := document-uri(root($hit))
+    let $type := tokenize($doc,'/')[(last() - 1)]
+    let $params := concat("&amp;directory=", $type, "&amp;stylesheet=", $type)
+    return
+    <li>
+        <a href="{concat(app:hrefToDoc($hit),$params)}">{app:getDocName($hit)}</a>  
+    </li> 
+ };
+```
+
+With this in change in, also documents matching the searched bibliographic item will be returned by e.g. [http://localhost:8080/exist/apps/aratea-digital/pages/hits.html?searchkey=Sternbilder%20des%20Mittelalters](http://localhost:8080/exist/apps/aratea-digital/pages/hits.html?searchkey=Sternbilder%20des%20Mittelalters).
+
+What is left to do now is to rename this function since it does not only return hits for person, but for other indexed entities as well. So I will rename it into `app:registerBasedSearch_hits`. Accordingly I have to apply this change to **pages/hits.html** as well, which looks like this:
+
+```html
+<div class="templates:surround?with=templates/page.html&amp;at=content">
+    <h1>Hits</h1>
+    <div data-template="app:registerBasedSearch_hits"/>
+</div>
+```
+
+# Conclusion and Outlook
+
+With this post we implement a framework/workflow/functionality which allows us to add/customize our registers/index quit easily and without too much copy&pasting. The recent code-base is available for dowonload [here](https://github.com/csae8092/posts/raw/master/pimp-de-web-app/downloads/part-4/aratea-digital-0.1.xar)Now that we have set up the core functionalities we should improve the look and the usability of **pages/hits.html**. But this will be the topic of the [next post](../part-5-improve-index-based-search). 
