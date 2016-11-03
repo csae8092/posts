@@ -44,7 +44,7 @@ As already described in the [second part](../part-2-a-customizable-table-of-cont
 </div>
 ```
 
-As you might have noticed, we had to implement a new variable `var fetched_searchkey' to keep our bookmarking-feature working.
+As you might have noticed, we had to implement a new variable `var fetched_searchkey` to keep our bookmarking-feature working.
 Accordingly we have to change return value of `app:registerBasedSearch_hits` stored in **modules/app.xql**:
 
 ```xquery
@@ -85,7 +85,7 @@ Ideally our results table could be expanded by at least two more colums. One col
     </table>
 ...
 ```
-So far the easier part. What's left to do is to provide some content for these columns, because right now e.g. [http://localhost:8080/exist/apps/aratea-digital/pages/hits.html?searchkey=germanicus] looks a bit weired:
+So far the easier part. What's left to do is to provide some content for these columns, because right now e.g. [http://localhost:8080/exist/apps/aratea-digital/pages/hits.html?searchkey=germanicus](http://localhost:8080/exist/apps/aratea-digital/pages/hits.html?searchkey=germanicus) looks a bit weired:
 
 ![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-5/image_1.jpg).
 
@@ -117,11 +117,87 @@ for $title in collection(concat($config:app-root, '/data/'))//tei:TEI[.//*[@key=
     </tr> 
  };
 ```
-Now we can e.g. start an indexed based search for all documents (editions and manuscript descriptions) referring to the book e.g. "Dell'Era (1979)" [http://localhost:8080/exist/apps/aratea-digital/pages/hits.html?searchkey=Dell%27Era%20(1979)](http://localhost:8080/exist/apps/aratea-digital/pages/hits.html?searchkey=Dell%27Era%20(1979). The result will presented like this:
+Now we can e.g. start an indexed based search for all documents (editions and manuscript descriptions) referring to the book e.g. "Dell'Era (1979)" [http://localhost:8080/exist/apps/aratea-digital/pages/hits.html?searchkey=Borst,%20Schriften](http://localhost:8080/exist/apps/aratea-digital/pages/hits.html?searchkey=Borst,%20Schriften). The result will presented like this:
 
 ![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-5/image_2.jpg).
 
+The result is not to bad. We see a hitcount per document, we see the context of the searched term and we see the file name of the document containing the term (or in this case the bibliographic item), we searched for.
+
+### Broken bookmark feature
+
+Unfortunately by introducing more columns our bookmark functionality does not work properly any more. We still can filter the rows by typing into the filter fields, and the string we are filtering for will be captured as as `&index=` parameter. Though when we try to reload this URL, the value of this parameter will be pasted by default always into tablesorters first index field. 
+We could of course rewrite this bookmark functionality, creating e.g. for each column an individual parameter, but this sounds like some tedious and time consuming work. And we might spent our time better one something more fruitful.
+
 ## Displaying the number of all hits.
+
+Something more fruitful could be an overall hit count and some better feedback about the actual search term. We already implement such functionalities for the application's full text search, so we should:
+
+1. copy and paste the whole content of `pages/ft_search.html` to `pages/hits.html`. The only major difference is the called xQuery script. (Yes, I know this calls for refactoring).
+2. make sure that `pages/hits.html` is listening to the parameter **searchkey** and not **searchexpr** as in `pages/ft_search.html`.
+3. add to `app:app:registerBasedSearch_hits` in **modules/app.xql** a `class='KWIC'` attribute to the `<td>` element containing the context of the searchkey.
+
+With these changes in places, the result page for an index based search for the bibliographic item **Borst, Schriften** will look like depicted below:
+
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-5/image_3.jpg).
+
+
+## Cleaning up the nav-bar
+
+Before we call it a day, let's clean up our application's navigation bar a bit by creating a new menu entry called somehting like **Index** and group the links for our person, places, organisations and literature indexes below this. Doing so, our base template **templages/page.html** looks like this:
+
+```html
+        ...
+            <div class="navbar-collapse collapse" id="navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown" id="about">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home</a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="index.html">Home</a>
+                            </li>
+                            <li>
+                                <a href="toc.html">Table of Content</a>
+                            </li>
+                            <li>
+                                <a href="../data/editions">API</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Indexes</a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="persons.html">Persons</a>
+                            </li>
+                            <li>
+                                <a href="places.html">Places</a>
+                            </li>
+                            <li>
+                                <a href="organisations.html">Organisations</a>
+                            </li>
+                            <li>
+                                <a href="bibl.html">Literatur</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <div class="pull-right">
+                    <form method="get" action="ft_search.html" class="navbar-form" id="pageform">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="searchexpr" placeholder="search in all inventories" pattern=".{3,}" required="" title="3 characters minimum"/>
+                            </div>
+                            <button type="submit" class="btn btn-primary">search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        ...
+```
+
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-5/image_4.jpg).
+
 
 
 
