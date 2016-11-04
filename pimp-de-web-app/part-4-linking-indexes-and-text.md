@@ -201,6 +201,25 @@ What is left to do now is to rename this function since it does not only return 
 </div>
 ```
 
+## Attention
+
+For most queries the recently implemented functionality works as excepted. But conducting an index based search for the place [Prüfening](http://localhost:8080/exist/apps/aratea-digital/pages/places.html?place=Pr%C3%BC) leads to one match in listperson.xml: http://localhost:8080/exist/apps/aratea-digital/pages/hits.html?searchkey=pruefening because this file contains the following entry:
+
+```xml
+<person xml:id="wolfger">
+    <persName xml:id="gnd_100965148" ref="http://d-nb.info/gnd/100965148">Wolfger von Prüfening</persName>
+    <persName>Wolfgerus &lt;Pruveningensis&gt;</persName>
+    <floruit>ca.1100-ca.1173</floruit>
+    <affiliation>
+        <rs type="place" ref="#pruefening">Prüfening</rs>
+    </affiliation>
+    <occupation>monk</occupation>
+    <occupation>librarian</occupation>
+</person>
+```
+
+Following then the link to this document (listperson.xml) throws an error because the script is looking for a stylesheet called `indices.xsl`, which does not exist (yet). 
+
 # Conclusion and Outlook
 
 With this post we implement a framework/workflow/functionality which allows us to add/customize our registers/index quit easily and without too much copy&pasting. The recent code-base is available for download [here](https://github.com/csae8092/posts/raw/master/pimp-de-web-app/downloads/part-4/aratea-digital-0.1.xar).

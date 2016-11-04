@@ -199,8 +199,10 @@ Before we call it a day, let's clean up our application's navigation bar a bit b
 ![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-5/image_4.jpg).
 
 
+# Conclusion and Outlook
 
-
+The result page for an index based search as well as the one for the full text search look and feel now very similar. The users can filter and sort the results according to their needs, and the KWIC-feature as well as the number of hits per document allows the users easier to decided which results of the listed search results might be useful and which not. 
+In the [next HowTo](../part-6-text-and-index) we will interlink the actual HTML representations of the editions and manuscript descriptions with the index-files. With the little help of some XSLT and JavaScript, users will be then able to click on a e.g. person's name mentioned (and tagged) in an edition. This click will open some pop-up window, providing the additional information to this entity fetched from the according index entry.
 
 As usual you can download the latest code-base [here](https://github.com/csae8092/posts/raw/master/pimp-de-web-app/downloads/part-5/aratea-digital-0.1.xar).
 
