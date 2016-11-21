@@ -222,6 +222,6 @@ Following then the link to this document (listperson.xml) throws an error becaus
 
 # Conclusion and Outlook
 
-With this post we implement a framework/workflow/functionality which allows us to add/customize our registers/index quit easily and without too much copy&pasting. The recent code-base is available for download [here](https://github.com/csae8092/posts/raw/master/pimp-de-web-app/downloads/part-4/aratea-digital-0.1.xar).
-
+With this post we implement a framework/workflow/functionality which allows us to add/customize our register- or index-documents quit easily and without too much copy&pasting. 
 Now that we have set up the core functionalities we should improve the look and the usability of **pages/hits.html**. But this will be the topic of the [next post](../part-5-improve-index-based-search/). 
+The recent code-base is available for download [here](https://github.com/csae8092/posts/raw/master/pimp-de-web-app/downloads/part-4/aratea-digital-0.1.xar).
