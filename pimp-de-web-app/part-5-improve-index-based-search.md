@@ -1,6 +1,6 @@
 # Introduction
 
-In this post we will improve the look and the feel of our index-based-search functionalities on which we already worked in the [last post](../part-4-add-and-improve-registers/). We will implement good old tablesorter as well as some KWIC preview for matching results. The code we developed so far can be downloaded [here](https://github.com/csae8092/posts/raw/master/pimp-de-web-app/downloads/part-4/aratea-digital-0.1.xar).
+In this post we will improve the look and the feel of our index-based-search functionalities on which we already worked in the [last post](../part-4-add-and-improve-registers/). We will implement good old tablesorter as well as some KWIC preview for the matching results. The code we developed so far can be downloaded [here](https://github.com/csae8092/posts/raw/master/pimp-de-web-app/downloads/part-4/aratea-digital-0.1.xar).
 
 ## tablesorter 
 As already described in the [second part](../part-2-a-customizable-table-of-content/), we will implement tablesorter also for **pages/hits.html** which then looks like this:
@@ -45,7 +45,7 @@ As already described in the [second part](../part-2-a-customizable-table-of-cont
 ```
 
 As you might have noticed, we had to implement a new variable `var fetched_searchkey` to keep our bookmarking-feature working.
-Accordingly we have to change return value of `app:registerBasedSearch_hits` stored in **modules/app.xql**:
+Accordingly we have to change the value returned by the function `app:registerBasedSearch_hits` stored in **modules/app.xql**:
 
 ```xquery
 declare function app:registerBasedSearch_hits($node as node(), $model as map(*), $searchkey as xs:string?, $path as xs:string?)
@@ -85,9 +85,10 @@ Ideally our results table could be expanded by at least two more colums. One col
     </table>
 ...
 ```
+
 So far the easier part. What's left to do is to provide some content for these columns, because right now e.g. [http://localhost:8080/exist/apps/aratea-digital/pages/hits.html?searchkey=germanicus](http://localhost:8080/exist/apps/aratea-digital/pages/hits.html?searchkey=germanicus) looks a bit weired:
 
-![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-5/image_1.jpg).
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-5/image_1.jpg)
 
 As we all know, the 'content' for those rows is provided by `app:registerBasedSearch_hits` stored in **modules/app.xql** which we have to modify like this:
 
@@ -126,7 +127,7 @@ The result is not to bad. We see a hitcount per document, we see the context of 
 ### Broken bookmark feature
 
 Unfortunately by introducing more columns our bookmark functionality does not work properly any more. We still can filter the rows by typing into the filter fields, and the string we are filtering for will be captured as as `&index=` parameter. Though when we try to reload this URL, the value of this parameter will be pasted by default always into tablesorters first index field. 
-We could of course rewrite this bookmark functionality, creating e.g. for each column an individual parameter, but this sounds like some tedious and time consuming work. And we might spent our time better one something more fruitful.
+We could of course rewrite this bookmark functionality, creating e.g. for each column an individual parameter, but this sounds like some tedious and time consuming work. And we might spent our time better one something more fruitful. So it's much simpler to remove the all the bookmark related javascript code. 
 
 ## Displaying the number of all hits.
 
@@ -198,6 +199,64 @@ Before we call it a day, let's clean up our application's navigation bar a bit b
 
 ![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-5/image_4.jpg).
 
+## Keeping things consistent (full text search)
+
+By adapting the index based search as described above, we brought our application in a slightly inconsistent state as far as search functionalities are concerned. Because now, the **all** documents stored in any sub collection of our `data/` data directory will be searched by an index based search. But not so if we run a fulltext search, which only examines documents stored in `data/editions/`. To fix this - in case we want to - and we want to, we basically have to rewrite `app:ft_search` in **modules/app.xql** as well es adapt our full text index settings. Let's start with the latter by changing the existing configuration stored at **/db/system/config/db/apps/aratea-digital/collection.xconf** into: 
+
+```xml
+<collection xmlns="http://exist-db.org/collection-config/1.0">
+    <index xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <fulltext default="none" attributes="false"/>
+        <create qname="tei:term" type="xs:string"/>
+        <create qname="tei:persName" type="xs:string"/>
+        <create qname="tei:placeName" type="xs:string"/>
+        <create qname="tei:abbr" type="xs:string"/>
+        <lucene>
+            <text qname="tei:p"/>
+            <text qname="tei:msDesc"/>
+        </lucene>
+    </index>
+</collection>
+```
+
+Then we also copy and paste this code snippet into `collection.xconf` stored in our application's root directory since. By doing so, every time we install our application to an eXist-db instance, this index configuration will be copied into `/db/system/config/db/apps/aratea-digital/`. 
+After this, go to the dasboard of your eXist-db instance, click on the **Collections** pane and there click on the **Reindex collection** icon. 
+Now also (some parts) of the manuscript descrptions stored in `data/descriptions` should be indexed.
+In the next step, we will modify the selector of our full text search function called `app:ft_search` which is defined in **modules/app.xql** so it looks like in the snippet below:
+
+```xquery
+ for $hit in collection(concat($config:app-root, '/data/'))//*[.//tei:p[ft:query(.,$searchterm)]|.//tei:cell[ft:query(.,$searchterm)] | .//tei:msDesc[ft:query(.,$searchterm)]]
+```
+
+When we now search for example for "geometrical", six matches in two documents will be returned:
+
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-5/image_5.jpg).
+
+But the links will lead us to nothing more than blank pages, because like in our former index based search function, we have still have hard coded stylesheet and directory links. So the only thing we have to do, is to copy&paste&adapt some lines of codes from `app:registerBasedSearch_hits` to `app:ft_search` in **modules/app.xql**:
+
+```xquery
+ declare function app:ft_search($node as node(), $model as map (*)) {
+ if (request:get-parameter("searchexpr", "") !="") then
+ let $searchterm as xs:string:= request:get-parameter("searchexpr", "")
+ for $hit in collection(concat($config:app-root, '/data/'))//*[.//tei:p[ft:query(.,$searchterm)]|.//tei:cell[ft:query(.,$searchterm)] | .//tei:msDesc[ft:query(.,$searchterm)]]
+    let $doc := document-uri(root($hit))
+    let $type := tokenize($doc,'/')[(last() - 1)]
+    let $params := concat("&amp;directory=", $type, "&amp;stylesheet=", $type)
+    let $href := concat(app:hrefToDoc($hit), "&amp;searchexpr=", $searchterm, $params) 
+    let $score as xs:float := ft:score($hit)
+    order by $score descending
+    return
+    <tr>
+        <td>{$score}</td>
+        <td class="KWIC">{kwic:summarize($hit, <config width="40" link="{$href}" />)}</td>
+        <td>{app:getDocName($hit)}</td>
+    </tr>
+ else
+    <div>Nothing to search for</div>
+ };
+```
+
+With this changes in places, we can search through manuscirpt descriptions as well as the edited texts of the manuscript at once.
 
 # Conclusion and Outlook
 

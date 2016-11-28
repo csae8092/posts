@@ -7,10 +7,10 @@ The code we wrote so far can be downloaded [here](https://github.com/csae8092/po
 
 By looking into `data/indices` of the current project, we see that this collection does not only contain an index document for persons, but also the documents: 
 
-* listBibl.xml - bibliography of title references in the editions and manuscript descriptions
-* listOrg.xml - a list of organisations mentioned in the manuscript descriptions, assigned with links to norm data records.
-* listPlace.xml - you might have guessed it, a list of (normalized and norm data referenced) Places mentioned in editions and descriptions
-* listWork.xml - A list of 'works', historical texts. Unlike the lists mentioned before, this listWork.xml is NOT encoded in TEI but is following some custom schema (although implicitly borrowing tags from the TEI). 
+* listBibl.xml - bibliography of title references in the editions and manuscript descriptions;
+* listOrg.xml - a list of organisations mentioned in the manuscript descriptions, assigned with links to norm data records;
+* listPlace.xml - you might have guessed it, a list of (normalized and norm data referenced) places mentioned in editions and descriptions;
+* listWork.xml - A list of 'works' or historical texts. Unlike the lists mentioned before, this listWork.xml is NOT encoded in TEI but is following some custom schema (although implicitly borrowing tags from the TEI). 
 
 The first task to fulfill in this post is now to make this indexes visible (and usable) in our web application. Since the functions of those documents as well as their structures are very similar to the already known `personlist.xml`, we can accomplish this task by a) copy and paste the existing lines of xQuery and HTML code an modify them slightly, or b) by rewriting/refactoring these lines to make them more generic and therefore usable for all index documents.
 We will do something of both, meaning first we will rewrite the existing function a little bit, so we don't have to apply too many changes after copying and pasting. But before we do any of that, we will rename those index files following the naming convention already used for `personlist.xml` which can be expressed like this: `list{entity}.xml` whereas the entity should preferably match a TEI tag (e.g. `<bibl>` or `<title>`) or any used attribute value (e.g `<rs type="place"/>`, `<rs type="person">` or `<name type="org"/>`). This will makes things slightly more comfortable for us a little bit later.
@@ -105,7 +105,7 @@ Let's start the investigation with the code on the requested HTML page `pages/hi
 </div>
 ```
 
-As we see, the function `app:listPers_hits` is called. A function which looks for matches in the application's  `data/editions/` collection. Also it looks for a handful specif combinations of TEI-elements and attributes. Both things are not really covering our current application's needs, since we also want the manuscript descriptions searched through which are stored in `data/descriptions/` as well as e.g. persons are tagged in the descriptions as e.g. `<authors>`. 
+As we see, the function `app:listPers_hits` is called. A function which looks for matches in the application's  `data/editions/` collection. Also it looks for a handful specific combinations of TEI-elements and attributes. Both things are not really covering our current application's needs, since we also want the manuscript descriptions searched, which are stored in `data/descriptions/` as well as e.g. persons are tagged in the descriptions as e.g. `<authors>`. 
 We should therefore rewrite our search function as follows:
 
 ```xquery
@@ -125,9 +125,9 @@ But when we now try to follow these links get to the actual documents containing
 
 ![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-4/image_3.jpg)
 
-This has to be considered as feature and not as bug, because the application or, to me more precise the function `app:XMLtoHTML` in **modules/app.xql**: does exactly what we told her to do. It is looking for a document called **Leiden_VLQ_79.xml** in the collection `data/editions/` and transform this - none existing one -  with the default stylsheet `resources/xslt/xmlToHtml.xsl`.
+This has to be considered as feature and not as bug, because the application or, to me more precise the function `app:XMLtoHTML` in **modules/app.xql**: does exactly what we told it to do. It is looking for a document called **Leiden__VLQ__79.xml** in the collection `data/editions/` and transform this - none existing one -  with the default stylsheet `resources/xslt/xmlToHtml.xsl`.
 
-Lucky for us the we parametrized this function already [see Part 9 - Code refactoring](../part-9-code-refactoring/). What is left to do now is to find out, if a document is either a description or an edition and based on this, add the according `?directory=` parameter.
+Lucky for us the we parametrized this function already ([see Part 9 - Code refactoring](../part-9-code-refactoring/)). What is left to do now is to find out, if a document is either a description or an edition and based on this, add the according `?directory=` parameter.
 Something we can achieve be rewriting `app:listPers_hits` in **modules/app.xql** into:
 
 ```xquery
@@ -172,7 +172,7 @@ With these changes in place, our person index works now as expected. But what ab
 
 ![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-4/image_5.jpg)
 
-Same is true for e.g. http://localhost:8080/exist/apps/aratea-digital/pages/hits.html?searchkey=strasbourg
+Same is true for e.g. [http://localhost:8080/exist/apps/aratea-digital/pages/hits.html?searchkey=strasbourg](http://localhost:8080/exist/apps/aratea-digital/pages/hits.html?searchkey=strasbourg).
 
 What does not work out of box is a search for dedicated bibliographic items. But this should not come as a surprise to us as referencing literature in editions and manuscript descriptions work sligthly different then referencing persons, places and organisations. To fix this, we have to add another condition to `app:listPers_hits` which should then look as the snippet below:
 
@@ -192,7 +192,7 @@ for $hit in collection(concat($config:app-root, '/data/'))//tei:TEI[.//*[@key=$s
 
 With this in change in, also documents matching the searched bibliographic item will be returned by e.g. [http://localhost:8080/exist/apps/aratea-digital/pages/hits.html?searchkey=Sternbilder%20des%20Mittelalters](http://localhost:8080/exist/apps/aratea-digital/pages/hits.html?searchkey=Sternbilder%20des%20Mittelalters).
 
-What is left to do now is to rename this function since it does not only return hits for person, but for other indexed entities as well. So I will rename it into `app:registerBasedSearch_hits`. Accordingly I have to apply this change to **pages/hits.html** as well, which looks like this:
+What is left to do now is to rename this function since it does not only return hits for persons, but for other indexed entities as well. So I will rename it into `app:registerBasedSearch_hits`. Accordingly I have to apply this change to **pages/hits.html** as well, which looks like this:
 
 ```html
 <div class="templates:surround?with=templates/page.html&amp;at=content">
@@ -203,7 +203,7 @@ What is left to do now is to rename this function since it does not only return 
 
 ## Attention
 
-For most queries the recently implemented functionality works as excepted. But conducting an index based search for the place [Prüfening](http://localhost:8080/exist/apps/aratea-digital/pages/places.html?place=Pr%C3%BC) leads to one match in listperson.xml: http://localhost:8080/exist/apps/aratea-digital/pages/hits.html?searchkey=pruefening because this file contains the following entry:
+For most queries the recently implemented functionality works as excepted. But conducting an index based search for the place [Prüfening](http://localhost:8080/exist/apps/aratea-digital/pages/places.html?place=Pr%C3%BC) leads to one match in listperson.xml: [http://localhost:8080/exist/apps/aratea-digital/pages/hits.html?searchkey=pruefening](http://localhost:8080/exist/apps/aratea-digital/pages/hits.html?searchkey=pruefening) because this file contains the following entry:
 
 ```xml
 <person xml:id="wolfger">
