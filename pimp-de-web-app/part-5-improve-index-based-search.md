@@ -120,7 +120,7 @@ for $title in collection(concat($config:app-root, '/data/'))//tei:TEI[.//*[@key=
 ```
 Now we can e.g. start an indexed based search for all documents (editions and manuscript descriptions) referring to the book e.g. "Dell'Era (1979)" [http://localhost:8080/exist/apps/aratea-digital/pages/hits.html?searchkey=Borst,%20Schriften](http://localhost:8080/exist/apps/aratea-digital/pages/hits.html?searchkey=Borst,%20Schriften). The result will presented like this:
 
-![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-5/image_2.jpg).
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-5/image_2.jpg)
 
 The result is not to bad. We see a hitcount per document, we see the context of the searched term and we see the file name of the document containing the term (or in this case the bibliographic item), we searched for.
 
@@ -139,7 +139,7 @@ Something more fruitful could be an overall hit count and some better feedback a
 
 With these changes in places, the result page for an index based search for the bibliographic item **Borst, Schriften** will look like depicted below:
 
-![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-5/image_3.jpg).
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-5/image_3.jpg)
 
 
 ## Cleaning up the nav-bar
@@ -197,7 +197,7 @@ Before we call it a day, let's clean up our application's navigation bar a bit b
         ...
 ```
 
-![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-5/image_4.jpg).
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-5/image_4.jpg)
 
 ## Keeping things consistent (full text search)
 
@@ -230,7 +230,7 @@ In the next step, we will modify the selector of our full text search function c
 
 When we now search for example for "geometrical", six matches in two documents will be returned:
 
-![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-5/image_5.jpg).
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-5/image_5.jpg)
 
 But the links will lead us to nothing more than blank pages, because like in our former index based search function, we have still have hard coded stylesheet and directory links. So the only thing we have to do, is to copy&paste&adapt some lines of codes from `app:registerBasedSearch_hits` to `app:ft_search` in **modules/app.xql**:
 
