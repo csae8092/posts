@@ -103,14 +103,15 @@ As one can see this code does contain the HTML-markup of a simple modal which ca
 Now we have almost everything in place except a little bit more JavaScript code responsible for actually showing the modal. But this accomplished by the few lines of code added to `templates/page.html` just below our function from above:
 
 ```javascript
-<script type="text/javascript">
+<script type='text/javascript'>
     $(window).load(function () {
         $('#myModal').modal('show');
     });
 </script>
+```
 
-Now we should be able to click on any of the green colored entities to view additional information stored in the index files
+Now we should be able to click on any of the green colored entities to view additional information stored in the index files.
 
-![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-6/image_0.jpg).
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-6/image_0.jpg)
 
 
