@@ -68,3 +68,5 @@ With this change in place a click on [Bamberg_Class_55.xml](http://localhost:808
 
 # Conclusion and Outlook
 
+With these modifications in place we can now create a table of content derived from hetergeneous sources and render them with their matching stylesheets. As usual you can download the code written so far from [here](https://github.com/csae8092/posts/raw/master/pimp-de-web-app/downloads/part-7/aratea-digital-0.1.xar).
+In the [next post](../part-8-add-application-user-group) we will add a `post-install.xql` script to the application, which will create an application specific user group whenever the app is installed and grant users of this group special write and execute rights.  

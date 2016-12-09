@@ -117,5 +117,5 @@ Now we should be able to click on any of the green colored entities to view addi
 # Conclusion and Outlook
 
 Of course this solution is very bare bone, especially in regards to the content and it's layout. Depending on the project, the provided additional information and the number of different entites (and their index-documents) one could add more complex xQuery functions to enhance layout, content (and functionality), maybe be writing more sophisticated queries or adding some xls-stylesheets.
-In the [next]()  HowTo we will rework our Table of Content a bit, so it does not only list the edited manuscripts but also the manuscript descriptions. 
+In the [next](../part-7-toc-from-heterogeneous-sources)  HowTo we will rework our Table of Content a bit, so it does not only list the edited manuscripts but also the manuscript descriptions. 
 And of course, the code developed so far, can be downloaded [here](https://github.com/csae8092/posts/raw/master/pimp-de-web-app/downloads/part-6/aratea-digital-0.1.xar).
