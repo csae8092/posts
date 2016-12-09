@@ -23,10 +23,10 @@ Since this HowTo strives for developing generic solutions, we are not going to w
 A very strong indicator for an index-linked entity seems to be a `@ref` attribute. So let's write a template rule for all those elements, which adds some `<strong>` tag with an `@class='linkedEntity'` around, as well as a `@data-key` attribute which has the value of the `@ref` attribute. 
 
 ```xslt
-<xsl:template match="node()[@ref]">
-    <strong style='color:green' class="linkedEntity">
-        <xsl:attribute name="data-key">
-            <xsl:value-of select="current()/@ref"/>
+<xsl:template match='node()[@ref]'>
+    <strong style='color:green' class='linkedEntity'>
+        <xsl:attribute name='data-key'>
+            <xsl:value-of select='current()/@ref'/>
         </xsl:attribute>
         <xsl:apply-templates/>
     </strong>
@@ -55,13 +55,13 @@ The next thing to do is to write some JavaScript code, which will will open a mo
 So let's add the following code towards the bottom of our base template `templates/page.html`.
 
 ```javascript
-<script type="text/javascript">
+<script type='text/javascript'>
     $(document).ready(function () {
         var trigger = $('.linkedEntity');
         $(trigger).click(function () {
             var dataKey = $(this).data('key');
             dataKey = dataKey.substring(1);
-            var url = "entity-info.html?entityID=" + dataKey
+            var url = 'entity-info.html?entityID=' + dataKey
             console.log([url, dataKey]);
             $('#loadModal').load(url, function () {
                 $('#myModal').modal('show');
@@ -110,8 +110,12 @@ Now we have almost everything in place except a little bit more JavaScript code 
 </script>
 ```
 
-Now we should be able to click on any of the green colored entities to view additional information stored in the index files.
+Now we should be able to click on any of the green colored entities to view additional information stored in the index files displayed in a modal.
 
 ![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-6/image_0.jpg)
 
+# Conclusion and Outlook
 
+Of course this solution is very bare bone, especially in regards to the content and it's layout. Depending on the project, the provided additional information and the number of different entites (and their index-documents) one could add more complex xQuery functions to enhance layout, content (and functionality), maybe be writing more sophisticated queries or adding some xls-stylesheets.
+In the [next]()  HowTo we will rework our Table of Content a bit, so it does not only list the edited manuscripts but also the manuscript descriptions. 
+And of course, the code developed so far, can be downloaded [here](https://github.com/csae8092/posts/raw/master/pimp-de-web-app/downloads/part-6/aratea-digital-0.1.xar).
