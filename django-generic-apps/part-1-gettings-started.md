@@ -33,8 +33,7 @@ Probably the most useful app amongst 'django-generic-apps' is called *webpage*. 
 ### used in
 
 This application is used in the following projects (by the time of writing this post):
-[DEFC](https://defc.acdh.oeaw.ac.at/) | [DAACDA](https://daacda.acdh.oeaw.ac.at/) | [PAAS](https://paas.acdh.oeaw.ac.at/) | [LaBaSi](https://labasi.acdh.oeaw.ac.at/) | [ToteTiroler](https://totetiroler.acdh.oeaw.ac.at/) | [CBAB](https://cbab.acdh.oeaw.ac.at/) | [ECCE](https://ecce.acdh.oeaw.ac.at/)
-
+[DEFC](https://defc.acdh.oeaw.ac.at/) | [DAACDA](https://daacda.acdh.oeaw.ac.at/) | [PAAS](https://paas.acdh.oeaw.ac.at/) | [LaBaSi](https://labasi.acdh.oeaw.ac.at/) | [ToteTiroler](https://totetiroler.acdh.oeaw.ac.at/) | [CBAB](https://cbab.acdh.oeaw.ac.at/) | [ECCE](https://ecce.acdh.oeaw.ac.at/) | [dig-ed-cat](https://dig-ed-cat.acdh.oeaw.ac.at/)
 ---
 
 ## places
@@ -48,7 +47,7 @@ As one could most likely quess by the app's name, this app can be used in projec
 
 ### used in
 
-[DEFC](https://defc.acdh.oeaw.ac.at/) | [DAACDA](https://daacda.acdh.oeaw.ac.at/) | [ToteTiroler](https://totetiroler.acdh.oeaw.ac.at/) | [CBAB](https://cbab.acdh.oeaw.ac.at/)
+[DEFC](https://defc.acdh.oeaw.ac.at/) | [DAACDA](https://daacda.acdh.oeaw.ac.at/) | [ToteTiroler](https://totetiroler.acdh.oeaw.ac.at/) | [CBAB](https://cbab.acdh.oeaw.ac.at/) | [dig-ed-cat](https://dig-ed-cat.acdh.oeaw.ac.at/)
 
 ---
 
@@ -56,7 +55,7 @@ As one could most likely quess by the app's name, this app can be used in projec
 
 ![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/django-generic-apps/images/part-1/image_2.jpg)
 
-This application allows to link/snyc data from zotero libraries with django-projects. Therefore it provides
+This application allows to link/snyc data from [zotero](https://www.zotero.org/) libraries with django-projects. Therefore it provides
 
 * a simple model of a bibliographic item with the properties like *author*, *title*, *year*, ... as well as property with stores the key or ID of this item assigend by zotero;
 * a script which allows to import core data from zotero items into the django-project
@@ -82,3 +81,17 @@ vocabs - nomen est omen - takes care of the controlled vocabularies in a project
  [CBAB](https://cbab.acdh.oeaw.ac.at/) | [ECCE](https://ecce.acdh.oeaw.ac.at/)
 
 ---
+
+## charts
+
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/django-generic-apps/images/part-1/image_3.jpg)
+
+charts is an app which facilitate the usage of [Highcharts: Interactive JavaScript charts for your webpage](http://www.highcharts.com/). It provides
+
+* base templates with all the needed java-script code,
+* views to render those templates,
+* as well as demo data endpoints to make rebuilding custom made endpoints easier.
+
+### used in
+
+[ECCE](https://ecce.acdh.oeaw.ac.at/) | [DAACDA](https://daacda.acdh.oeaw.ac.at/) | [ToteTiroler](https://totetiroler.acdh.oeaw.ac.at/) | [dig-ed-cat](https://dig-ed-cat.acdh.oeaw.ac.at/)
