@@ -18,6 +18,8 @@ But before we are getting started for real, let's create a virtual environment f
 
 (As you can see, I am using [anaconda(https://www.continuum.io)])
 
+## Example Project
+
 Then I will change into the `/django-generic-apps` directory I got by cloning the repo mentioned above and create my sample project called **rlunch** (which stands for Research-Lunch).
 
 `$ django-admin startproject rlunch`
@@ -37,3 +39,8 @@ Stop the developement server (ctrl+c), and migrate the current database scheme a
 `$ python manage.py migrate`
 
 `$ python manage.py createsuperuser`
+
+
+## Include webpage-app
+
+No we have to copy our webpage-app into the projects root directory. You can retrieve a copy of this app e.g. from [here]()
