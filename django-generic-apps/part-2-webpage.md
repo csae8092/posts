@@ -46,7 +46,7 @@ Stop the developement server (ctrl+c), and migrate the current database scheme a
 Now download the zipped webpage-code from [here](https://github.com/csae8092/posts/raw/master/django-generic-apps/downloads/webpage.zip), unzip it and copy the 'webpage'-folder into the project's root directory. (`/django-generic-apps/rlunch/webpage`).
 The next thing we have to do is to register this new app into our projects settings-file. Therefore open `/django-generic-apps/rlunch/rlunch/settings.py` and add 'webpage' to INSTALLED_APPS:
 
-```
+```python
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -83,7 +83,7 @@ Looks like we are missing some packages. So let's install [crispy_forms](http://
 
 After we installed crispy-forms we have to register and configure them in the project's settings file:
 
-```
+```python
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -100,3 +100,23 @@ CRISPY_TEMPLATE_PACK = "bootstrap3"
 ```
 
 When we now run `$ python manage.py runserver`, we should be able to browse to [http://127.0.0.1:8000/](http://127.0.0.1:8000/) and see something like depicted below:
+
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/django-generic-apps/images/part-2/image_1.jpg)
+
+# Update projects metadata
+
+What is now left to do is to update the project's metadata. To do this open `\rlunch\webpage\metadata.py` and edit to your project's need:
+
+```python
+# this files contains basic metadata about the project. This data will be used
+# (by default) in the base.html and index.html
+
+PROJECT_METADATA = {
+    'title': 'Research-Lunch',
+    'author': 'Peter Andorfer',
+    'subtitle': 'A django-generic-apps example app',
+    'description': 'This is an exapmle project to demonstrate how to implement django-generich-apps',
+    'github': 'https://github.com/acdh-oeaw/django-generic-apps',
+    'purpose_de': 'Das Ziel des Projekts "Research-Lunch" ist die Dokumentation der Implementierung der sogeannten "django-generic-apps"',
+    'purpose_en': 'The purpose of the project "Research-Lunch" is the documentation of the implementation fo the so called "django-generic-apps".'}
+```
