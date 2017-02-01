@@ -43,4 +43,60 @@ Stop the developement server (ctrl+c), and migrate the current database scheme a
 
 ## Include webpage-app
 
-No we have to copy our webpage-app into the projects root directory. You can retrieve a copy of this app e.g. from [here]()
+Now download the zipped webpage-code from [here](https://github.com/csae8092/posts/raw/master/django-generic-apps/downloads/webpage.zip), unzip it and copy the 'webpage'-folder into the project's root directory. (`/django-generic-apps/rlunch/webpage`).
+The next thing we have to do is to register this new app into our projects settings-file. Therefore open `/django-generic-apps/rlunch/rlunch/settings.py` and add 'webpage' to INSTALLED_APPS:
+
+```
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'webpage',
+]
+```
+Then open your project's urls configuration `/django-generic-apps/rlunch/rlunch/urls.py` and include the webpage-urls:
+
+```python
+from django.conf.urls import url, include
+from django.contrib import admin
+
+urlpatterns = [
+    url(r'^admin/', admin.site.urls),
+    url(r'^', include('webpage.urls', namespace='webpage')),
+]
+```
+
+Now start your developement server again:
+
+`$ python manage.py runserver`
+
+But this will throw the following error message:
+
+>ImportError: No module named 'crispy_forms'
+
+Looks like we are missing some packages. So let's install [crispy_forms](http://django-crispy-forms.readthedocs.io/en/latest/) by typing:
+
+`$ pip install django-crispy-forms`
+
+After we installed crispy-forms we have to register and configure them in the project's settings file:
+
+```
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'crispy_forms',
+    'webpage',
+]
+
+CRISPY_TEMPLATE_PACK = "bootstrap3"
+
+```
+
+When we now run `$ python manage.py runserver`, we should be able to browse to [http://127.0.0.1:8000/](http://127.0.0.1:8000/) and see something like depicted below:
