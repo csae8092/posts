@@ -33,7 +33,8 @@ Probably the most useful app amongst 'django-generic-apps' is called *webpage*. 
 ### used in
 
 This application is used in the following projects (by the time of writing this post):
-[DEFC](https://defc.acdh.oeaw.ac.at/) | [DAACDA](https://daacda.acdh.oeaw.ac.at/) | [PAAS](https://paas.acdh.oeaw.ac.at/) | [LaBaSi](https://labasi.acdh.oeaw.ac.at/) | [ToteTiroler](https://totetiroler.acdh.oeaw.ac.at/) | [CBAB](https://cbab.acdh.oeaw.ac.at/) | [ECCE](https://ecce.acdh.oeaw.ac.at/) | [dig-ed-cat](https://dig-ed-cat.acdh.oeaw.ac.at/)
+
+[DEFC](https://defc.acdh.oeaw.ac.at/) | [DAACDA](https://daacda.acdh.oeaw.ac.at/) | [PAAS](https://paas.acdh.oeaw.ac.at/)/[APIS](https://apis.acdh.oeaw.ac.at/) | [LaBaSi](https://labasi.acdh.oeaw.ac.at/) | [ToteTiroler](https://totetiroler.acdh.oeaw.ac.at/) | [CBAB](https://cbab.acdh.oeaw.ac.at/) | [ECCE](https://ecce.acdh.oeaw.ac.at/) | [dig-ed-cat](https://dig-ed-cat.acdh.oeaw.ac.at/) | [HowTo](https://howto.acdh.oeaw.ac.at/) | [geodjango/world](https://geodjango.acdh.oeaw.ac.at/)
 ---
 
 ## places
@@ -95,3 +96,13 @@ charts is an app which facilitate the usage of [Highcharts: Interactive JavaScri
 ### used in
 
 [ECCE](https://ecce.acdh.oeaw.ac.at/) | [DAACDA](https://daacda.acdh.oeaw.ac.at/) | [ToteTiroler](https://totetiroler.acdh.oeaw.ac.at/) | [dig-ed-cat](https://dig-ed-cat.acdh.oeaw.ac.at/)
+
+
+#  apps/projects
+
+For the last three items in this list (world, blog, and iso639) the boundaries between app and project or service are not clear to draw any more because either of purpose or complexity of the app/project. "World" for example could be packed very nicely into a single application. But since this application deals with spatial data, it requires a [PostgreSQL](https://www.postgresql.org/) as database and some GIS-libraries which are slightly tricky to install. Also, ACDH-OeAW intends to provide this application as a service ([see](https://geodjango.acdh.oeaw.ac.at/)) which ideally makes it superfluous to install this application into other projects. The same is true for [iso639](https://iso639.acdh.oeaw.ac.at/) which is an application/service exposing and API to query and retrieve ISO639 language codes.
+Most parts of the *blog* application (which is the core this [HowTo-Blog](https://howto.acdh.oeaw.ac.at/) could be kept self contained and therefore easily reused. But the implemented full text search adds an extra layer of complexity to the projects architecture which would require some thoughtful refactoring to keep this app as generic as possible.
+
+# Conclusion and Outlook
+
+This was a quick tour-de-force through 'django-generic-apps'. In the following post we will build a sample django-projct which will implement all those apps.
