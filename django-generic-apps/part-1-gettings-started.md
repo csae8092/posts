@@ -19,4 +19,15 @@ In django-speak an app is NOT understood as full fledged web application (this w
 
 ## webpage
 
-Probably the most useful app amongst 'django-generic-apps' is the app *webpage*.  
+Probably the most useful app amongst 'django-generic-apps' is called *webpage*. It basically provides:
+* a base template which styles the whole project by defining those elements which appear on all pages of the project (navigation, footer) and includes all basic static content (css, js-libraries);
+* a generic start page;
+* a generic imprint page;
+* cookie consent pop up;
+* social media share button;
+* and user authentication (log-in log-out).  
+
+### used in
+
+This application is used in the following projects (by the time of writing this post):
+[DEFC](https://defc.acdh.oeaw.ac.at/) | [DAACDA](https://daacda.acdh.oeaw.ac.at/) | [PAAS](https://paas.acdh.oeaw.ac.at/) | [LaBaSi](https://labasi.acdh.oeaw.ac.at/) | [ToteTiroler](https://totetiroler.acdh.oeaw.ac.at/) | [CBAB](https://cbab.acdh.oeaw.ac.at/) | [ECCE](https://ecce.acdh.oeaw.ac.at/)
