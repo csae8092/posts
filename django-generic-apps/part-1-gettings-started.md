@@ -84,7 +84,7 @@ vocabs - nomen est omen - takes care of the controlled vocabularies in a project
 
 ## charts
 
-![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/django-generic-apps/images/part-1/image_3.jpg)
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/django-generic-apps/images/part-1/image_4.jpg)
 
 charts is an app which facilitate the usage of [Highcharts: Interactive JavaScript charts for your webpage](http://www.highcharts.com/). It provides
 
