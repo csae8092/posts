@@ -54,7 +54,7 @@ As one could most likely quess by the app's name, this app can be used in projec
 
 ## bib
 
-![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/django-generic-apps/images/part-1/image_1.jpg)
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/django-generic-apps/images/part-1/image_2.jpg)
 
 This application allows to link/snyc data from zotero libraries with django-projects. Therefore it provides
 
@@ -64,5 +64,21 @@ This application allows to link/snyc data from zotero libraries with django-proj
 ### used in
 
 [DEFC](https://defc.acdh.oeaw.ac.at/) | [CBAB](https://cbab.acdh.oeaw.ac.at/)
+
+---
+
+## vocabs
+
+![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/django-generic-apps/images/part-1/image_3.jpg)
+
+vocabs - nomen est omen - takes care of the controlled vocabularies in a project. It does so by providing:
+
+* a data model very closed to SKOS,
+* an API to query the vocabulary and/or retrieve in JSON or as RDF/XML
+* an intreface to import/upload existing SKOS concepts from RDF/XML
+
+### used in
+
+ [CBAB](https://cbab.acdh.oeaw.ac.at/) | [ECCE](https://ecce.acdh.oeaw.ac.at/)
 
 ---
