@@ -74,7 +74,7 @@ REST_FRAMEWORK = {
 
 ```
 
-Now we only have to include the api-URLs:
+2. and include the api-URLs:
 
 ```python
 
@@ -105,7 +105,44 @@ urlpatterns = [
 
 ```
 
-and we should be ready to go.
+Now we should be ready to go.
 In case you find installing all those packages mentioned above cumbersome - like I do - be assured that there is vocabs_requirements.txt file located in vocabs.zip. So you can run `$ pip install -r vocabs_requirements.txt` to install all needed packages.
 
 # Import SKOS (from RDF/XML)
+
+After vocabs-app is set up and running, let's import some Skos-Concepts. Therefore browse to [http://127.0.0.1:8000/vocabs/import/](http://127.0.0.1:8000/vocabs/import/) and upload a skos RDF/XML document, (you can find a sample file in vocabs/data/xml), and click **import**. The import may take some time (depending on the size of your file). But you check the status off the import by opening in another window [http://127.0.0.1:8000/vocabs/concepts/browse/](http://127.0.0.1:8000/vocabs/concepts/browse/) where you see all already imported concepts. (The import does not use any transactions!).
+
+# Export SKOS (To RDF/XML)
+
+You can export (parts) of your Concepts by going to [http://127.0.0.1:8000/api/skosconcepts/]. Here you can select the output format (HTML, JSON, SKOS RDF/XML) and define the paging size. So to export all concepts stored in your database, you could do something like: [http://127.0.0.1:8000/api/skosconcepts/?format=xml&page_size=100000](http://127.0.0.1:8000/api/skosconcepts/?format=xml&page_size=100000). Now you can save the output and e.g. upload it to [http://labs.sparna.fr/skos-play/](http://labs.sparna.fr/skos-play/).
+
+# Link vocabs with custom app:
+
+After all this tedious work, we can now use/reference all classes from the vocabs app in our custom app. Therefore let's add a new property to the Talk class:
+
+```python
+
+# lunch/models.py
+
+from django.core.urlresolvers import reverse
+from django.utils import timezone
+from django.db import models
+from vocabs.models import SkosConcept
+
+
+class Talk(models.Model):
+    title = models.CharField(blank=True, max_length=250)
+    speaker = models.CharField(blank=True, max_length=250)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    how_was_it = models.ForeignKey(SkosConcept, blank=True, null=True)
+
+    def __str__(self):
+        return "'{}', by {}".format(self.title, self.speaker)
+
+    def get_absolute_url(self):
+        return reverse('lunch:talk_detail', kwargs={'pk': self.id})
+
+```
+
+This it all it needs for a very basic implementation. After making and running migrations we can browse to [http://127.0.0.1:8000/lunch/talk/create/](http://127.0.0.1:8000/lunch/talk/create/) and select all SkosConcepts stored in the database so far.
