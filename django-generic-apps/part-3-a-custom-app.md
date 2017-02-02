@@ -1,6 +1,6 @@
 # Create a custom django-app
 
-In this project we will create a custom django-app in our rlunch-project ([see last post](../part-2-webpage)) which will serve as integration point for all django-generic-apps briefly described in the [first post](../part-1-gettings-started.md).
+In this project we will create a custom django-app in our rlunch-project ([see last post](../part-2-webpage)) which will serve as integration point for all django-generic-apps briefly described in the [first post](../part-1-gettings-started).
 
 ## create the app and define a model
 
@@ -71,7 +71,7 @@ and then make migrations and run migrations:
 
 `$ python manage.py migrate`
 
-When we now start the server and browse to http://127.0.0.1:8000/admin/lunch/talk/, we can create, edit, and delete Talk-objects.
+When we now start the server and browse to [http://127.0.0.1:8000/admin/lunch/talk/](http://127.0.0.1:8000/admin/lunch/talk/), we can create, edit, and delete Talk-objects.
 
 # Conclusion and outlook
 
