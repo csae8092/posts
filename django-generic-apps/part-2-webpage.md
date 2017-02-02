@@ -81,6 +81,10 @@ Looks like we are missing some packages. So let's install [crispy_forms](http://
 
 `$ pip install django-crispy-forms`
 
+And we also want to update the requirements.txt file, or to be more precise, lets create a new one called requirements_webpage.txt and store it in the webpage directory:
+
+`$ pip freeze > requirements_webpage.txt`
+
 After we installed crispy-forms we have to register and configure them in the project's settings file:
 
 ```python
@@ -120,3 +124,15 @@ PROJECT_METADATA = {
     'purpose_de': 'Das Ziel des Projekts "Research-Lunch" ist die Dokumentation der Implementierung der sogeannten "django-generic-apps"',
     'purpose_en': 'The purpose of the project "Research-Lunch" is the documentation of the implementation fo the so called "django-generic-apps".'}
 ```
+
+# Conclusion and outlook:
+
+In this post we went through the basic steps of implementing one django-generic-app.
+
+1. Copy the app directory into your project's root directory.
+2. Register the app in your settings file.
+3. Register your app's URLs in your project's basic URL config file.
+4. Add some app specific configuarions if needed.
+5. Add links to you app in the base template (if needed).
+
+In the [next post](../part-2-a-custom-app.md)), we will create a custom app which will then serve as integration point for other django-generic-apps.  
