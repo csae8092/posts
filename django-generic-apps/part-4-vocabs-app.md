@@ -106,5 +106,6 @@ urlpatterns = [
 ```
 
 and we should be ready to go.
+In case you find installing all those packages mentioned above cumbersome - like I do - be assured that there is vocabs_requirements.txt file located in vocabs.zip. So you can run `$ pip install -r vocabs_requirements.txt` to install all needed packages.
 
 # Import SKOS (from RDF/XML)
