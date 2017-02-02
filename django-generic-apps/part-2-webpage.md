@@ -132,7 +132,9 @@ In this post we went through the basic steps of implementing one django-generic-
 1. Copy the app directory into your project's root directory.
 2. Register the app in your settings file.
 3. Register your app's URLs in your project's basic URL config file.
-4. Add some app specific configuarions if needed.
-5. Add links to you app in the base template (if needed).
+4. Add some app specific configuartions if needed.
+5. Install dependency packages.
+6. Make migrations if needed.
+7. Add links to you app in the base template (if needed).
 
 In the [next post](../part-2-a-custom-app), we will create a custom app which will then serve as integration point for other django-generic-apps.  
