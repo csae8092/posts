@@ -105,4 +105,4 @@ Most parts of the *blog* application (which is the core this [HowTo-Blog](https:
 
 # Conclusion and Outlook
 
-This was a quick tour-de-force through 'django-generic-apps'. In the following post we will build a sample django-projct which will implement all those apps.
+This was a quick tour-de-force through 'django-generic-apps'. In the [following post](../part-2-webpage) we will build a sample django-projct which will implement all those apps.

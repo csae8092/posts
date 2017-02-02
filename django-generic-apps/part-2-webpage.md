@@ -2,7 +2,7 @@
 
 # Create a new django-project
 
-To get things started we are going to create a new django-project in which we will implement all the generic-apps mentioned in the [last post]((../part-1-gettings-started.md)). You can either follow this and the upcoming posts step-by-step or you can clone this GitHub Repo [https://github.com/acdh-oeaw/django-generic-apps](https://github.com/acdh-oeaw/django-generic-apps) and check out the matching tags. This is up to you.
+To get things started we are going to create a new django-project in which we will implement all the generic-apps mentioned in the [last post](../part-1-gettings-started.md). You can either follow this and the upcoming posts step-by-step or you can clone this GitHub Repo [https://github.com/acdh-oeaw/django-generic-apps](https://github.com/acdh-oeaw/django-generic-apps) and check out the matching tags. This is up to you.
 
 start with https://github.com/acdh-oeaw/django-generic-apps/commit/337adfd12fb9358ab7977eba0a58cdf3c0468630
 
