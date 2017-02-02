@@ -106,3 +106,5 @@ urlpatterns = [
 ```
 
 and we should be ready to go.
+
+# Import SKOS (from RDF/XML)
