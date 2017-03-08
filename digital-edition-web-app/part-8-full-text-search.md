@@ -71,7 +71,7 @@ For a very simple solution just copy&paste the **/db/system/config/db/apps/thun-
 
 ## ft_search.html
 
-Now we need to provide some simple search form which will take the search string, pass it on to some xQuery script (see next section) and return the results to the users. Therefore, we create a html document **/pages/ft_search.html** and add the following lines:
+Now we need to provide some simple search form which will take the search string, pass it on to some XQuery script (see next section) and return the results to the users. Therefore, we create a html document **/pages/ft_search.html** and add the following lines:
 
 ```html
 <div class="templates:surround?with=templates/page.html&amp;at=content">
@@ -138,7 +138,7 @@ declare function app:ft_search($node as node(), $model as map (*)) {
  };
 ```
 
-But trying to browse to [http://localhost:8080/exist/apps/thun-demo/pages/ft_search.html](http://localhost:8080/exist/apps/thun-demo/pages/ft_search.html) now will still result in an error message, but this time complaining about missing namespace definition. This is because we are using eXist-db’s xQuery module [kwic](http://exist-db.org/exist/apps/doc/kwic.xml) but without importing it first. To do so, we have to add the following line below the import statement for the config module: 
+But trying to browse to [http://localhost:8080/exist/apps/thun-demo/pages/ft_search.html](http://localhost:8080/exist/apps/thun-demo/pages/ft_search.html) now will still result in an error message, but this time complaining about missing namespace definition. This is because we are using eXist-db’s XQuery module [kwic](http://exist-db.org/exist/apps/doc/kwic.xml) but without importing it first. To do so, we have to add the following line below the import statement for the config module: 
 
 ```xquery
 import module namespace config="http://www.digital-archiv.at/ns/thun-demo/config" at "config.xqm";
@@ -157,7 +157,7 @@ No go ahead and search something for example: "kirche" (german for church, don�
 
 ## Hit Count
 
-Usually a search result page like the one we are building here also presents a number of matches or hits returned by the search query. Basically there are two ways of fetching and presenting this information. One could calculate the number of hits on the back end with the help of xQuery and display this number to the user using eXist-db's template functions. I guess this is considered to be the right way.
+Usually a search result page like the one we are building here also presents a number of matches or hits returned by the search query. Basically there are two ways of fetching and presenting this information. One could calculate the number of hits on the back end with the help of XQuery and display this number to the user using eXist-db's template functions. I guess this is considered to be the right way.
 
 On the other hand our existing search function is already providing all information needed to display the number of hits to the user. Because currently it renders each hit in an HTML `<p/>` element, grouped by the document in which the search term was found (rendered as HTML `tr` elements.) So if you want to know how many hits the query returned with, just go on and count all paragraphs of the KWIC-column in the results table. Of course this is not exactly a user friendly solution. Especially if have the power of computers at disposal and everybody knows that computers are quite good in counting things.
 

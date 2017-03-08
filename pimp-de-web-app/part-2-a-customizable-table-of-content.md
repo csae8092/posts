@@ -68,7 +68,7 @@ When we browse no to [http://localhost:8080/exist/apps/aratea-digital/pages/toc.
 
 ![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/pimp-de-web-app/images/part-2/image_1.jpg)
 
-This is of course related to the xQuery function **app:toc** which we have to modify now according to the code snippet below: **modules/app.xql**
+This is of course related to the XQuery function **app:toc** which we have to modify now according to the code snippet below: **modules/app.xql**
 
 ```xquery
 declare function app:toc($node as node(), $model as map(*)) {

@@ -26,7 +26,7 @@ To get started, we need a place to store this (and later some more) stylesheets 
 You wonder what this stylesheet does. Well, let’s find out.
 
 
-## run transformation with xQuery function(s)
+## run transformation with XQuery function(s)
 
 To see the effects of this xslt document on one of our XML/TEI documents, we have to bring those two documents somehow together. In eXist-db there exists a function called **transform:transform** which does this for us. What is left for us to do, is to write a litter function around transform:transform which will be triggered by eXist-db templating system, whenever the page **show.html** (our first site created by our own) will be loaded.
 

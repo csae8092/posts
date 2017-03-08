@@ -133,7 +133,7 @@ We could of course rewrite this bookmark functionality, creating e.g. for each c
 
 Something more fruitful could be an overall hit count and some better feedback about the actual search term. We already implement such functionalities for the application's full text search, so we should:
 
-1. copy and paste the whole content of `pages/ft_search.html` to `pages/hits.html`. The only major difference is the called xQuery script. (Yes, I know this calls for refactoring).
+1. copy and paste the whole content of `pages/ft_search.html` to `pages/hits.html`. The only major difference is the called XQuery script. (Yes, I know this calls for refactoring).
 2. make sure that `pages/hits.html` is listening to the parameter **searchkey** and not **searchexpr** as in `pages/ft_search.html`.
 3. add to `app:app:registerBasedSearch_hits` in **modules/app.xql** a `class='KWIC'` attribute to the `<td>` element containing the context of the searchkey.
 

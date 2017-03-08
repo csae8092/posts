@@ -28,7 +28,7 @@ We create the table of content with the self created function *app:toc* and so f
 
 To remove the application’s name from this function we use the variable *$config:app-root* which, according to the inline comment to this variable/function
 > Determine[s] the application root collection from the current module load path." 
-For our application this means that *$config:app-root* will resolve into `/db/apps/thun-demo/`. Since our XML/TEI documents are stored in `/db/apps/thun-demo/data/edition/` we have to add this last part. This we achieve with the xQuery function *concat()* which concatenates two or more strings. Everything put together resolves in:
+For our application this means that *$config:app-root* will resolve into `/db/apps/thun-demo/`. Since our XML/TEI documents are stored in `/db/apps/thun-demo/data/edition/` we have to add this last part. This we achieve with the XQuery function *concat()* which concatenates two or more strings. Everything put together resolves in:
 
 ```xquery
 declare function app:toc($node as node(), $model as map(*)) {

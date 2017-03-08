@@ -93,7 +93,7 @@ Our first HTML document will be very minimalistic and just contain three lines o
 </div>
 ```
 
-In case you are wondering about the first line, this is used to load our application’s main template. eXist-db ships with its own template engine. See [here](http://exist-db.org/exist/apps/doc/development-starter.xml) for a general introduction and [here](http://exist-db.org/exist/apps/doc/templating.xml) to get more detailed information. Unfortunately, the documentation is partly outdated. Instead of using the HTML *class* attribute for referencing templates (and xQuery functions), one should now use the *data-template* attribute as it is already done in our automatically created *index.html*. 
+In case you are wondering about the first line, this is used to load our application’s main template. eXist-db ships with its own template engine. See [here](http://exist-db.org/exist/apps/doc/development-starter.xml) for a general introduction and [here](http://exist-db.org/exist/apps/doc/templating.xml) to get more detailed information. Unfortunately, the documentation is partly outdated. Instead of using the HTML *class* attribute for referencing templates (and XQuery functions), one should now use the *data-template* attribute as it is already done in our automatically created *index.html*. 
 
 To admire our work, browse to [http://localhost:8080/exist/apps/thun-demo/pages/show.html](http://localhost:8080/exist/apps/thun-demo/pages/show.html) and you should see:
 
@@ -310,7 +310,7 @@ We
 
 ## Upcoming steps
 
-In the [third part](../part-3-table-of-content) of this tutorial we will upload the XML/TEI files in our database and write our first xQuery function which will generate a very basic table of contents from the uploaded XML/TEI documents. To present this table of contents to the users of our web app, we will also learn how to integrate xQuery functions in HTML code. 
+In the [third part](../part-3-table-of-content) of this tutorial we will upload the XML/TEI files in our database and write our first XQuery function which will generate a very basic table of contents from the uploaded XML/TEI documents. To present this table of contents to the users of our web app, we will also learn how to integrate XQuery functions in HTML code. 
 
 ---
 
