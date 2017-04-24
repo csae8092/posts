@@ -1,11 +1,11 @@
 # Implement vocabs-app
 In this post we will implement the vocabs-app to our play-project set up [so far](../part-3-a-custom-app) and import some predefined controlled vocabularies from an .xlsx document.
 
-# Copy and integrate vocabs-app
+# Copy and Integrate vocabs-app
 
 To get started we have to
 
-1. download the zipped vocabs-app from [here]((https://github.com/csae8092/posts/raw/master/django-generic-apps/downloads/vocabs.zip))
+1. download the zipped vocabs-app from [here](https://github.com/csae8092/posts/raw/master/django-generic-apps/downloads/vocabs.zip)
 2. Unzip it and move it into rlunch's root directory.
 3. Register 'vocabs' in 'INSTALLED_APPS' in rlunch/settings.py file.
 4. Include 'vocabs' urls.py file in rlunch's urls.py file `url(r'^vocabs/', include('vocabs.urls', namespace='vocabs')),`
@@ -40,30 +40,33 @@ To get started we have to
 
 ```
 
-After this steps, when you (re)start the dev-server, you will most likly be presented with the following error message(s):
+After this steps, when you (re)start the development server, you will most likely be presented with the following error message(s):
 
-> ImportError: No module named 'django_tables2'
+> ImportError: No module named 'django\_tables2'
 
-This message indicates a missing package, so we have to install this by `$ pip install django-tables2` and include this package ('django_tables2',) in INSTALLED_APPS.
+This message indicates a missing package, so we have to install this by `$ pip install django-tables2` and include this package ('django\_tables2',) in INSTALLED\_APPS.
 
 Starting the dev-server again will throw this error:
 
 > ImportError: No module named 'dal'
 
-This means we need to install `$ pip install django-autocomplete-light==3.2.1`, and register it (dal', 'dal_select2') before django.contrib.admin and grappelli if present ([see](https://django-autocomplete-light.readthedocs.io/en/master/install.html)).
+This means we need to install `$ pip install django-autocomplete-light==3.2.1`, and register it ('dal', 'dal_select2') before django.contrib.admin and grappelli if present ([see](https://django-autocomplete-light.readthedocs.io/en/master/install.html)).
 
-The next error will complain about missing 'django_filters' plugin, so run `$ pip install django-filter` (without s!) and register ('django_filters').
+The next error will complain about missing 'django\_filters' plugin, so run `$ pip install django-filter` (without s!) and register ('django\_filters').
 
 The next error will require lxml. Install this, which on windows might be a bit tricky if you try to use the officail pip release, so I will run this command: `$ conda install -c anaconda lxml=3.6.4`
 
 Now you should be enabled to run the dev-server without getting any erros but when you try to browse to [http://127.0.0.1:8000/](http://127.0.0.1:8000/) you will be confronted with another error complaining about missing 'api-root' URL.
+
+Notes for Linux: you may run into an import error for libgcrypt.so.11. In Debian/Ubuntu you could try to download and install it from [here](ftp://ftp.debian.org/debian/pool/main/libg/libgcrypt11/).
+
 
 # DRF - django rest framework
 
 This error comes from not yet installed and configured DRF-packages which is used by the vocabs app to set up an API to expose its data.
 So what we have to do is
 
-1. install DRF by running: `pip install djangorestframework==3.5.3`, adding 'rest_framework' to INSTALLED_APPS as well as DRF-configurtaion:
+1. install DRF by running: `pip install djangorestframework==3.5.3`, adding 'rest\_framework' to INSTALLED\_APPS as well as DRF-configurtaion:
 
 ```python
 
@@ -107,6 +110,7 @@ urlpatterns = [
 
 Now we should be ready to go.
 In case you find installing all those packages mentioned above cumbersome - like I do - be assured that there is vocabs_requirements.txt file located in vocabs.zip. So you can run `$ pip install -r vocabs_requirements.txt` to install all needed packages.
+Afterwards run `$ python manage.py migrate` for migration.
 
 # Import SKOS (from RDF/XML)
 
@@ -145,4 +149,12 @@ class Talk(models.Model):
 
 ```
 
-This it all it needs for a very basic implementation. After making and running migrations we can browse to [http://127.0.0.1:8000/lunch/talk/create/](http://127.0.0.1:8000/lunch/talk/create/) and select all SkosConcepts stored in the database so far.
+Make and run migrations:
+
+`$ manage.py makemigrations`
+
+`$ python manage.py migrate`
+
+This is all it needs for a very basic implementation.
+
+For the next step urls, templates and views for lunch will be needed (work in progress) so that we can browse to [http://127.0.0.1:8000/lunch/talk/create/](http://127.0.0.1:8000/lunch/talk/create/) and select all SkosConcepts stored in the database so far.
