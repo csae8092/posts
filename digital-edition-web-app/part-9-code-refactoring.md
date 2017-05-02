@@ -2,7 +2,7 @@
 
 In the [last part](../part-8-full-text-search) we implemented a KWIC full text search which actually works. And as always, you can download the current code of the application [here](https://github.com/csae8092/posts/raw/master/digital-edition-web-app/downloads/part-8/thun-demo-0.1.xar). Now the only missing thing is a functional link from the KWIC view to the HTML representation of those documents which contain the search string. By the time it should be quite obvious how to generate such a link. All we have to do is to fetch the document’s name and add it as a parameter to [http://localhost:8080/exist/apps/thun-demo/pages/show.html?document={nameOfTheDocument}](http://localhost:8080/exist/apps/thun-demo/pages/show.html?document=czernin-an-thun_o.D._A3-XXI-D80.xml) as we are doing in our [table of content](http://localhost:8080/exist/apps/thun-demo/pages/toc.html) or [index based search](http://localhost:8080/exist/apps/thun-demo/pages/persons.html). 
 
-In both cases we first extracted the documents name with some string juggling and the xQuery functions **document-root()** and **root()** and used this to crate a `<a href="">` HTML element.
+In both cases we first extracted the documents name with some string juggling and the XQuery functions **document-root()** and **root()** and used this to crate a `<a href="">` HTML element.
 
 # New functions
 
@@ -173,7 +173,7 @@ declare function app:toc($node as node(), $model as map(*)) {
 
 # make app:XMLtoHTML fit for the future
 
-As we are working on **moduels/app.xql** anyway, we can also attack another issue. Currently the function app:XMLtoHTML is rather static, meaning that the not the stylesheet we want to apply on our XML document is hard coded but also the directory in where our XML document is supposed to be. Albeit this function suffices for our needs so far, it could be handy if we were able to dynamically tell the function the name of the directory where to look for the XML documents as well as which stylesheet should be used. Luckily these features are easy to implemented. We simply have to declare additional variables for the directory and the name of the stylesheet. Those variables retrieve their values from URL parameters. And since we don't want to change any other of our already written code, we add some default values to those variables. The rewritten **app:XMLtoHTML** function expresses this in valid xQuery:
+As we are working on **moduels/app.xql** anyway, we can also attack another issue. Currently the function app:XMLtoHTML is rather static, meaning that the not the stylesheet we want to apply on our XML document is hard coded but also the directory in where our XML document is supposed to be. Albeit this function suffices for our needs so far, it could be handy if we were able to dynamically tell the function the name of the directory where to look for the XML documents as well as which stylesheet should be used. Luckily these features are easy to implemented. We simply have to declare additional variables for the directory and the name of the stylesheet. Those variables retrieve their values from URL parameters. And since we don't want to change any other of our already written code, we add some default values to those variables. The rewritten **app:XMLtoHTML** function expresses this in valid XQuery:
 
 ```xquery
 declare function app:XMLtoHTML ($node as node(), $model as map (*), $query as xs:string?) {

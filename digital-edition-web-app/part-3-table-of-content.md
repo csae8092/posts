@@ -1,6 +1,6 @@
 # Introduction and requirements
 
-In this third part of our series of HowTos we will upload the XML/TEI files in our database and write our first xQuery function which will generate a very basic table of content from the uploaded XML/TEI documents. To present this table of content to the users of our web app, we will also learn how to integrate xQuery functions in HTML code. (Yes, this lines were copy-pasted from Part II).
+In this third part of our series of HowTos we will upload the XML/TEI files in our database and write our first XQuery function which will generate a very basic table of content from the uploaded XML/TEI documents. To present this table of content to the users of our web app, we will also learn how to integrate XQuery functions in HTML code. (Yes, this lines were copy-pasted from Part II).
 
 Part III of this tutorial builds upon the work done in [Part II](../part-2-getting-started). In case you lost your laptop in the train, deleted your eXist-db instance or just didn’t follow Part III you will need [the code created in Part II](https://github.com/csae8092/posts/raw/master/digital-edition-web-app/downloads/part-2/thun-demo-0.1.xar).
 
@@ -98,9 +98,9 @@ Save your changes and check if everything works out. Browse to [http://localhost
 
 ![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-3/image_7.jpg)
 
-## xQuery
+## XQuery
 
-Impressive! Well not really yet. We should add some content. And for this we are going to write our first xQuery function. This function will browse through our *data/editions/* collection, fetch the names of all documents stored in this collection and present them in form of a simple list.
+Impressive! Well not really yet. We should add some content. And for this we are going to write our first XQuery function. This function will browse through our *data/editions/* collection, fetch the names of all documents stored in this collection and present them in form of a simple list. 
 
 To make sure that our function is going to the things we are expecting from it, it is a good idea to play around with a little bit while writing/developing it. For this we open eXist-db XML editor eXide:
 
@@ -125,9 +125,9 @@ To execute or run this function, just click on **Eval**. This should create a li
 
 And this number should match the number of documents stored in *data/editions/*. Or, to be more precise, this number should match all documents stored in *data/editions/* which root element or node is named TEI.
 
-## HTML and xQuery
+## HTML and XQuery
 
-We have now a (very basic) script which fetches the names (or actually the names and the paths) of all TEI documents stored in *data/editions/*. Now we need to somehow combine this script with our *toc.html*. To accomplish this, we open *modules/app.xql* which is a collection of xQuery functions used by our application.
+We have now a (very basic) script which fetches the names (or actually the names and the paths) of all TEI documents stored in *data/editions/*. Now we need to somehow combine this script with our *toc.html*. To accomplish this, we open *modules/app.xql* which is a collection of XQuery functions used by our application. 
 
 By default this document just contains some kind of demo function **app:test**. You can inspect the results of this test-function on our application's start page (*index.html*).
 
@@ -171,6 +171,7 @@ Save the changes and browse to [http://localhost:8080/exist/apps/thun-demo/pages
 
 # Conclusion and outlook
 
-Congrats, you wrote your first xQuery script in this session of our tutorial and you played with it  in a quite interactive way using eXide. And you also wrote your first xQuery function and called it with the help from eXist-db templating system. Oh, and by the way, you have also just created a very basic digital edition application. An application which publishes XML/TEI in a machine readable and yes - also human readable manner. Even reading the XML/TEI model of the encoded text is usually not big fun for most of your users (from the humanities domain).
+Congrats, you wrote your first XQuery script in this session of our tutorial and you played with it  in a quite interactive way using eXide. And you also wrote your first XQuery function and called it with the help from eXist-db templating system. Oh, and by the way, you have also just created a very basic digital edition application. An application which publishes XML/TEI in a machine readable and yes - also human readable manner. Even reading the XML/TEI model of the encoded text is usually not big fun for most of your users (from the humanities domain). 
 
-In the [4th part](../part-4-xslt-transformation) of this little series of tutorials we will engage the detail view of our applications. This means, we will write another xQuery function, which will fetch an XML/TEI document and transform it with the help of an XSLT-script we are also going to write in the next session into a very basic HTML document.
+In the [4th part](../part-4-xslt-transformation) of this little series of tutorials we will engage the detail view of our applications. This means, we will write another XQuery function, which will fetch an XML/TEI document and transform it with the help of an XSLT-script we are also going to write in the next session into a very basic HTML document. 
+

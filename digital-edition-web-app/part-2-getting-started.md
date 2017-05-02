@@ -1,7 +1,7 @@
 # Introduction
 
 
-In the second part of our tutorial we will install eXist-db, and create a ›plain vanilla‹ eXist-db web application using eXist-db’s built-in **Deployment Editor**. Then we will start customizing this standard web app to our needs. We will customize the code layout by adding new directories and documents as well as add some few lines of code to our application’s controller.xql which is the script responsible for processing the URLs typed in the browser while navigating/controlling our application. These modifications do neither result in spectacular results, nor are they very exiting as it will mostly be copy-and-paste work. But this part of the tutorial will ease our further developement and might give you some general (although very superficial) insights into the general mechanics of web applications.  
+In the second part of our tutorial we will install eXist-db, and create a ›plain vanilla‹ eXist-db web application using eXist-db’s built-in **Deployment Editor**. Then we will start customizing this standard web app to our needs. We will customize the code layout by adding new directories and documents as well as add some few lines of code to our application’s controller.xql which is the script responsible for processing the URLs typed in the browser while navigating/controlling our application. These modifications do neither result in spectacular results, nor are they very exiting as it will mostly be copy-and-paste work. But this part of the tutorial will ease our further development and might give you some general (although very superficial) insights into the general mechanics of web applications.
 
 # Install eXist-db
 
@@ -45,7 +45,7 @@ We could start building our digital edition application right away. But I prefer
 
 ## Connect oXygen and eXist-db
 
-For editing XML files, the prefered way (for me) is to use oXygen **Data Source Explorer**. See [here](https://www.oxygenxml.com/xml_editor/eXist_support.html) to get instructions on how to connect oXygen with eXist-db. In case you are using oXygen 16 or higher, connecting to eXist-db is even easier. In the main menu, click on Window/Show View and select **Data Source Explorer**. Unfold the Data Source Explorer sidebar and click on the small wheel icon **Configure Database Sources**. In the opening **Preferences** window click on **Create eXist-db XML connection** and fill out the form. The defaults are
+For editing XML files, the preferred way (for me) is to use oXygen **Data Source Explorer**. See [here](https://www.oxygenxml.com/xml_editor/eXist_support.html) to get instructions on how to connect oXygen with eXist-db. In case you are using oXygen 16 or higher, connecting to eXist-db is even easier. In the main menu, click on Window/Show View and select **Data Source Explorer**. Unfold the Data Source Explorer sidebar and click on the small wheel icon **Configure Database Sources**. In the opening **Preferences** window click on **Create eXist-db XML connection** and fill out the form. The defaults are
 
 <table>
   <tr>
@@ -93,7 +93,7 @@ Our first HTML document will be very minimalistic and just contain three lines o
 </div>
 ```
 
-In case you are wondering about the first line, this is used to load our application’s main template. eXist-db ships with its own template engine. See [here](http://exist-db.org/exist/apps/doc/development-starter.xml) for a general introduction and [here](http://exist-db.org/exist/apps/doc/templating.xml) to get more detailed information. Unfortunately, the documentation is partly outdated. Instead of using the HTML *class* attribute for referencing templates (and xQuery functions), one should now use the *data-template* attribute as it is already done in our automatically created *index.html*. 
+In case you are wondering about the first line, this is used to load our application’s main template. eXist-db ships with its own template engine. See [here](http://exist-db.org/exist/apps/doc/development-starter.xml) for a general introduction and [here](http://exist-db.org/exist/apps/doc/templating.xml) to get more detailed information. Unfortunately, the documentation is partly outdated. Instead of using the HTML *class* attribute for referencing templates (and XQuery functions), one should now use the *data-template* attribute as it is already done in our automatically created *index.html*. 
 
 To admire our work, browse to [http://localhost:8080/exist/apps/thun-demo/pages/show.html](http://localhost:8080/exist/apps/thun-demo/pages/show.html) and you should see:
 
@@ -130,7 +130,7 @@ After saving our changes and reloading [eXist-db' dashboard page](http://localho
 
 ### Adapt page.html template
 
-As we are lazy and don’t want to type (and remember) the whole url to our **show.html** page, let’s add a link to this page to our main template stored at **templates/page.html**:
+As we are lazy and don’t want to type (and remember) the whole URL to our **show.html** page, let’s add a link to this page to our main template stored at **templates/page.html**:
 
 ```html
 
@@ -168,7 +168,7 @@ and without the use of any variable, like for instance the source of bootstrap�
 
 `<link rel="stylesheet" type="text/css" href="$shared/resources/css/bootstrap-3.0.3.min.css"/>.`
 
-And this means of course, that whenever we are on a html site which is not stored in the applications root directory the browser will always try to load this *style.css* from the wrong directory. 
+And this means of course, that whenever we are on a HTML site which is not stored in the applications root directory the browser will always try to load this *style.css* from the wrong directory.
 
 ## Populating the Resources directory
 
@@ -204,11 +204,11 @@ Of course, we need to populate these collections with some documents.
 
 In **resources/fonts** copy the content of **shared-resources/resources/fonts**.
 
-In **resources/css**, add your favorite [bootstrap library](http://getbootstrap.com/). We are using bootstrap-3.0.3.min.css which you can copy and paste from eXist-db’s shared **shared-resources** collection. 
+In **resources/css**, add your favorite [Bootstrap library](http://getbootstrap.com/). We are using bootstrap-3.0.3.min.css which you can copy and paste from eXist-db’s shared **shared-resources** collection.
 
 In **resources/js**, create a collection **jquery** and one called *tablesorter*. In **resources/js/jquery**, add the [jQuery](https://jquery.com/) library of your choice (but it should be compatible with your chosen bootstrap library). The tablesorter directory will be populated in soon to come HowTo.
 
-In **resources/js**, add the bootstrap javascript libraries needed for bootstrap. For the time being, we are done and our resource collection should look like on the screenshot below.
+In **resources/js**, add the Bootstrap JavaScript libraries needed for Bootstrap. For the time being, we are done and our resource collection should look like on the screenshot below.
 
 ![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-2/image_6.jpg)
 
@@ -294,25 +294,25 @@ Puhh, quit some work. Let’s resume what we have achieved so far:
 
 We 
 
-* installed eXist-db,
+* installed eXist-db
 
-* created our first eXist-db web application with the help of eXist-db’s **Deployment Editor**,
+* created our first eXist-db web application with the help of eXist-db’s **Deployment Editor**
 
-* created our first own html site,
+* created our first own HTML site
 
-* customized the application layout to our (well, mine) needs,
+* customized the application layout to our (well, mine) needs
 
-* we decoupled our application from eXist-db’s *shared-resources*,
+* we decoupled our application from eXist-db’s *shared-resources*
 
-* created a custom varibale in **controller.xql** to address our new **resources** directory, and 
+* created a custom variable in **controller.xql** to address our new **resources** directory
 
 * we adapted our application’s base template *tamplates/page.html* in a way that it now reflects all our changes. 
 
 ## Upcoming steps
 
-In the [third part](../part-3-table-of-content) of this tutorial we will upload the XML/TEI files in our database and write our first xQuery function which will generate a very basic table of contents from the uploaded XML/TEI documents. To present this table of contents to the users of our web app, we will also learn how to integrate xQuery functions in HTML code. 
+In the [third part](../part-3-table-of-content) of this tutorial we will upload the XML/TEI files in our database and write our first XQuery function which will generate a very basic table of contents from the uploaded XML/TEI documents. To present this table of contents to the users of our web app, we will also learn how to integrate XQuery functions in HTML code. 
 
 ---
 
 <b id="f1">1</b>
-Usually the pages directory was meant to store all HTML-Documents except the index.html which serves as starting page of the application. I kept index.html in the root directory to not break the application’s default url redirecting/rewriting logic meaning when you enter [http://localhost:8080/exist/apps/thun-demo](http://localhost:8080/exist/apps/thun-demo), you will be automatically redirected to [http://localhost:8080/exist/apps/thun-demo/index.html](http://localhost:8080/exist/apps/thun-demo/index.html). Unfortunately this separation of HTML Documents lead to difficulties concerning resolving relevant links which made some extra coding necessary. But thanks to the comments of [Stefan Probst](http://dk-sciences-contexts.univie.ac.at/people/fellows/stefan-probst/) such a separation is not needed any more.[↩](#a1)
+Usually the pages directory was meant to store all HTML-Documents except the index.html which serves as starting page of the application. I kept index.html in the root directory to not break the application’s default URL redirecting/rewriting logic meaning when you enter [http://localhost:8080/exist/apps/thun-demo](http://localhost:8080/exist/apps/thun-demo), you will be automatically redirected to [http://localhost:8080/exist/apps/thun-demo/index.html](http://localhost:8080/exist/apps/thun-demo/index.html). Unfortunately this separation of HTML Documents lead to difficulties concerning resolving relevant links which made some extra coding necessary. But thanks to the comments of [Stefan Probst](http://dk-sciences-contexts.univie.ac.at/people/fellows/stefan-probst/) such a separation is not needed any more.[↩](#a1)

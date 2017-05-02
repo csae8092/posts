@@ -99,9 +99,9 @@ Getting back to our concrete Thun-Demo application, we now have to think about a
 
 ![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/digital-edition-web-app/images/part-7/image_0.jpg)
 
-## HTML and xQuery
+## HTML and XQuery
 
-The next step should be already familiar to you. First we need an HTML file (`/pages/persons.html`) which calls our base template `/templates/pages.html` and an xQuery function (**app:listPers**) which transformed the data stored in listperson.xml in HTML code we can embed into **persons.html**. 
+The next step should be already familiar to you. First we need an HTML file (`/pages/persons.html`) which calls our base template `/templates/pages.html` and an XQuery function (**app:listPers**) which transformed the data stored in listperson.xml in HTML code we can embed into **persons.html**. 
 
 **/pages/persons.html**
 

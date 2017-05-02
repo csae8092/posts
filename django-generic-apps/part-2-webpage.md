@@ -1,22 +1,22 @@
 # Implement webpage app into a new project
 
-# Create a new django-project
+# Create a new Django Project
 
-To get things started we are going to create a new django-project in which we will implement all the generic-apps mentioned in the [last post](../part-1-gettings-started). You can either follow this and the upcoming posts step-by-step or you can clone this GitHub Repo [https://github.com/acdh-oeaw/django-generic-apps](https://github.com/acdh-oeaw/django-generic-apps) and check out the matching tags. This is up to you.
+To get things started we are going to create a new Django project in which we will implement all the generic apps mentioned in the [last post](../part-1-gettings-started). You can either follow this and the upcoming posts step-by-step or you can clone this GitHub Repo [https://github.com/acdh-oeaw/django-generic-apps](https://github.com/acdh-oeaw/django-generic-apps) and check out the matching tags. This is up to you.
 
-start with https://github.com/acdh-oeaw/django-generic-apps/commit/337adfd12fb9358ab7977eba0a58cdf3c0468630
+Start with https://github.com/acdh-oeaw/django-generic-apps/commit/337adfd12fb9358ab7977eba0a58cdf3c0468630
 
-## Virtual environment
+## Virtual Environment
 
-But before we are getting started for real, let's create a virtual environment for Python 3.4. and install django 1.9.x.
+But before we are getting started for real, let's create a virtual environment for Python 3.4. and install Django 1.9.x.
 
 `$ conda create --name rlunch python=3.4`
 
-`$ activate rlunch`
+`$ activate rlunch` or for Linux users: `$ source activate rlunch`
 
 `$ pip install Django==1.9.5`
 
-(As you can see, I am using [anaconda(https://www.continuum.io)])
+(As you can see, I am using [Anaconda](https://www.continuum.io))
 
 ## Example Project
 
@@ -24,7 +24,7 @@ Then I will change into the `/django-generic-apps` directory I got by cloning th
 
 `$ django-admin startproject rlunch`
 
-This command created the new directory `/django-generic-apps/rlunch` which is the root directory of our django-project. Change into this directory and try if everything worked so far, by typing the following commands:
+This command created the new directory `/django-generic-apps/rlunch` which is the root directory of our Django project. Change into this directory and try if everything worked so far, by typing the following commands:
 
 `$ cd rlunch`
 
@@ -34,7 +34,7 @@ Now you should be able to browse to [http://127.0.0.1:8000/](http://127.0.0.1:80
 
 ![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/django-generic-apps/images/part-2/image_0.jpg)
 
-Stop the developement server (ctrl+c), and migrate the current database scheme and then create a superuser
+Stop the development server (ctrl+c), migrate the current database scheme and then create a superuser:
 
 `$ python manage.py migrate`
 
@@ -69,7 +69,7 @@ urlpatterns = [
 ]
 ```
 
-Now start your developement server again:
+Now start your development server again:
 
 `$ python manage.py runserver`
 
@@ -107,9 +107,9 @@ When we now run `$ python manage.py runserver`, we should be able to browse to [
 
 ![image alt text](https://raw.githubusercontent.com/csae8092/posts/master/django-generic-apps/images/part-2/image_1.jpg)
 
-# Update projects metadata
+# Update Projects Metadata
 
-What is now left to do is to update the project's metadata. To do this open `\rlunch\webpage\metadata.py` and edit to your project's need:
+What is now left to do is to update the project's metadata. To do this open `\rlunch\webpage\metadata.py` and edit according to your project's needs:
 
 ```python
 # this files contains basic metadata about the project. This data will be used
@@ -132,9 +132,9 @@ In this post we went through the basic steps of implementing one django-generic-
 1. Copy the app directory into your project's root directory.
 2. Register the app in your settings file.
 3. Register your app's URLs in your project's basic URL config file.
-4. Add some app specific configuartions if needed.
+4. Add some app specific configurations if needed.
 5. Install dependency packages.
 6. Make migrations if needed.
 7. Add links to you app in the base template (if needed).
 
-In the [next post](../part-2-a-custom-app), we will create a custom app which will then serve as integration point for other django-generic-apps.  
+In the [next post](../part-3-a-custom-app), we will create a custom app which will then serve as integration point for other django-generic-apps.  
