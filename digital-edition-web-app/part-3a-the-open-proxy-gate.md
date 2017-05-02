@@ -43,8 +43,12 @@ At the ACDH-OeAW we followed the solution explained by Retter and Siegl on page 
 > (see “URL Mapping Using URL Rewriting” on page 196). You can then choose to filter
 > such requests in your own XQuery controller.
 
-Well actually we followed only the first part and changed the `<init-param>`. Now if someone tries to access the rest endpoint of our eXist-db instanced a 403 Error is thrown.
+Well actually we followed only the first part and changed the `<init-param>`. Now if someone tries to access the rest endpoint of our eXist-db instance a 403 Error is thrown.
 
 ## No data endpoints?
 
-By
+But by applying this fix - or at least the first part of it, our data is not exposed to the public any more. Although we are big fans of open data. So to give the public access to the data, we need some other solution. But as we don't want to fiddle around as little as possible with our application's XQuery controller (I guess the `controller.xql` in our application's root directory is meant by this) we have to come up with another solution.
+
+### RESTXQ
+
+Shutting down the 'out of the box' REST-endpoint was the perfect excuse to start playing around with [RESTXQ](http://exquery.github.io/exquery/exquery-restxq-specification/restxq-1.0-specification.html) and it's implementation in eXist-db.
