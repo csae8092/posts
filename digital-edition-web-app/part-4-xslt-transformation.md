@@ -11,7 +11,7 @@ To realize this requirements we are actually going to do two things. First, we h
 
 ## write a basic XSLT-Stylesheet
 
-Since this is not a tutorial about XSLT, I won´t go into the XSL specific details of the stylesheet we are going to write. For basic introduction into XSLT please refer to [this tutorial](https://www.w3schools.com/xml/xsl_intro.asp/) provided by [w3schools.com](http://www.w3schools.com/).
+Since this is not a tutorial about XSLT, I won´t go into the XSL specific details of the stylesheet we are going to write. For basic introduction into XSLT please refer to [this tutorial](https://www.w3schools.com/xml/xsl_intro.asp/) provided by [w3schools.com](http://www.w3schools.com/). (A long list of XSLT tutorials can be found at [http://www.whoishostingthis.com/resources/xslt/](http://www.whoishostingthis.com/resources/xslt/)).
 
 To get started, we need a place to store this (and later some more) stylesheets in our database. Therefore we create a new collection **resources/xslt/**. In this collection, we create a new document, called  **resources/xslt/xmlToHtml.xsl**. Our very very basic stylesheet will only contain the following few lines of code:
 
